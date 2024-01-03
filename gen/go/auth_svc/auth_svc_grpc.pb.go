@@ -24,7 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 type AuthClient interface {
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
-	Refresh(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	Refresh(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error)
+	CheckToken(ctx context.Context, in *CheckTokenRequest, opts ...grpc.CallOption) (*CheckTokenResponse, error)
 }
 
 type authClient struct {
@@ -53,9 +54,18 @@ func (c *authClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.C
 	return out, nil
 }
 
-func (c *authClient) Refresh(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
-	out := new(LoginResponse)
+func (c *authClient) Refresh(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error) {
+	out := new(RefreshResponse)
 	err := c.cc.Invoke(ctx, "/auth.Auth/Refresh", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) CheckToken(ctx context.Context, in *CheckTokenRequest, opts ...grpc.CallOption) (*CheckTokenResponse, error) {
+	out := new(CheckTokenResponse)
+	err := c.cc.Invoke(ctx, "/auth.Auth/CheckToken", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -68,7 +78,8 @@ func (c *authClient) Refresh(ctx context.Context, in *LoginRequest, opts ...grpc
 type AuthServer interface {
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
-	Refresh(context.Context, *LoginRequest) (*LoginResponse, error)
+	Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error)
+	CheckToken(context.Context, *CheckTokenRequest) (*CheckTokenResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -82,8 +93,11 @@ func (UnimplementedAuthServer) Register(context.Context, *RegisterRequest) (*Reg
 func (UnimplementedAuthServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
-func (UnimplementedAuthServer) Refresh(context.Context, *LoginRequest) (*LoginResponse, error) {
+func (UnimplementedAuthServer) Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
+}
+func (UnimplementedAuthServer) CheckToken(context.Context, *CheckTokenRequest) (*CheckTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckToken not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 
@@ -135,7 +149,7 @@ func _Auth_Login_Handler(srv interface{}, ctx context.Context, dec func(interfac
 }
 
 func _Auth_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LoginRequest)
+	in := new(RefreshRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -147,7 +161,25 @@ func _Auth_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interf
 		FullMethod: "/auth.Auth/Refresh",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).Refresh(ctx, req.(*LoginRequest))
+		return srv.(AuthServer).Refresh(ctx, req.(*RefreshRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_CheckToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).CheckToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/auth.Auth/CheckToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).CheckToken(ctx, req.(*CheckTokenRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -170,6 +202,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Refresh",
 			Handler:    _Auth_Refresh_Handler,
+		},
+		{
+			MethodName: "CheckToken",
+			Handler:    _Auth_CheckToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
