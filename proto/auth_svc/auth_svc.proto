@@ -9,12 +9,22 @@ service Auth {
   rpc Login (LoginRequest) returns (LoginResponse);
   rpc Refresh (RefreshRequest) returns (RefreshResponse);
   rpc CheckToken (CheckTokenRequest) returns (CheckTokenResponse);
+  rpc GetToken (CheckTokenRequest) returns (GetTokenResponse);
+
 }
 
 message RegisterRequest {
   string login = 1; 
   string password = 2;
   int32  app_id = 3;
+}
+
+message GetTokenRequest {
+  string login = 1; 
+  int32  app_id = 2;
+}
+message GetTokenResponse {
+  bool status = 1;
 }
 
 message RegisterResponse {
