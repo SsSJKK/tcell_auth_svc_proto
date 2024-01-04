@@ -27,6 +27,7 @@ type AuthClient interface {
 	Refresh(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error)
 	CheckToken(ctx context.Context, in *CheckTokenRequest, opts ...grpc.CallOption) (*CheckTokenResponse, error)
 	GetToken(ctx context.Context, in *CheckTokenRequest, opts ...grpc.CallOption) (*GetTokenResponse, error)
+	GetPin(ctx context.Context, in *GetPinRequest, opts ...grpc.CallOption) (*GetPinResponse, error)
 }
 
 type authClient struct {
@@ -82,6 +83,15 @@ func (c *authClient) GetToken(ctx context.Context, in *CheckTokenRequest, opts .
 	return out, nil
 }
 
+func (c *authClient) GetPin(ctx context.Context, in *GetPinRequest, opts ...grpc.CallOption) (*GetPinResponse, error) {
+	out := new(GetPinResponse)
+	err := c.cc.Invoke(ctx, "/auth.Auth/GetPin", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServer is the server API for Auth service.
 // All implementations must embed UnimplementedAuthServer
 // for forward compatibility
@@ -91,6 +101,7 @@ type AuthServer interface {
 	Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error)
 	CheckToken(context.Context, *CheckTokenRequest) (*CheckTokenResponse, error)
 	GetToken(context.Context, *CheckTokenRequest) (*GetTokenResponse, error)
+	GetPin(context.Context, *GetPinRequest) (*GetPinResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -112,6 +123,9 @@ func (UnimplementedAuthServer) CheckToken(context.Context, *CheckTokenRequest) (
 }
 func (UnimplementedAuthServer) GetToken(context.Context, *CheckTokenRequest) (*GetTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetToken not implemented")
+}
+func (UnimplementedAuthServer) GetPin(context.Context, *GetPinRequest) (*GetPinResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPin not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 
@@ -216,6 +230,24 @@ func _Auth_GetToken_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_GetPin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPinRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).GetPin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/auth.Auth/GetPin",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).GetPin(ctx, req.(*GetPinRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -242,6 +274,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetToken",
 			Handler:    _Auth_GetToken_Handler,
+		},
+		{
+			MethodName: "GetPin",
+			Handler:    _Auth_GetPin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

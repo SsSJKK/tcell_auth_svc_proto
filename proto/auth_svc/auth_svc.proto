@@ -10,6 +10,7 @@ service Auth {
   rpc Refresh (RefreshRequest) returns (RefreshResponse);
   rpc CheckToken (CheckTokenRequest) returns (CheckTokenResponse);
   rpc GetToken (CheckTokenRequest) returns (GetTokenResponse);
+  rpc GetPin (GetPinRequest) returns (GetPinResponse);
 
 }
 
@@ -20,6 +21,10 @@ message RegisterRequest {
 }
 
 message GetTokenRequest {
+  string login = 1; 
+  int32  app_id = 2;
+}
+message GetPinRequest {
   string login = 1; 
   int32  app_id = 2;
 }
@@ -37,6 +42,9 @@ message CheckTokenRequest {
   string refresh_token = 1; 
 }
 message CheckTokenResponse {
+  int64 user_id = 1; 
+}
+message GetPinResponse {
   int64 user_id = 1; 
 }
 
