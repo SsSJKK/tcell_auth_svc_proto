@@ -19,10 +19,6 @@ message SignUpRequest {
   int32  app_id = 3;
 }
 
-message GetTokenRequest {
-  string login = 1; 
-  int32  app_id = 2;
-}
 message TakePinRequest {
   string login = 1; 
   int32  app_id = 2;
@@ -33,9 +29,15 @@ message SignUpResponse {
 }
 message RefreshTokenRequest {
   string refresh_token = 1; 
+  int32  app_id = 2;
+}
+message RefreshTokenResponse {
+  string access_token = 1; 
+  string refresh_token = 2; 
 }
 message CheckTokenRequest {
   string refresh_token = 1; 
+  int32  app_id = 2;
 }
 message CheckTokenResponse {
   int64 user_id = 1; 
@@ -51,10 +53,6 @@ message SignInRequest {
 }
 
 message SignInResponse {
-  string access_token = 1; 
-  string refresh_token = 2; 
-}
-message RefreshTokenResponse {
   string access_token = 1; 
   string refresh_token = 2; 
 }
