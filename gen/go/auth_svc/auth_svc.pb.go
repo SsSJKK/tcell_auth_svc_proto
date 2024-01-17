@@ -240,7 +240,7 @@ func (x *SignUpResponse) GetUserId() int64 {
 	return 0
 }
 
-type RefreshToeknRequest struct {
+type RefreshTokenRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -248,8 +248,8 @@ type RefreshToeknRequest struct {
 	RefreshToken string `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 }
 
-func (x *RefreshToeknRequest) Reset() {
-	*x = RefreshToeknRequest{}
+func (x *RefreshTokenRequest) Reset() {
+	*x = RefreshTokenRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_auth_svc_auth_svc_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -257,13 +257,13 @@ func (x *RefreshToeknRequest) Reset() {
 	}
 }
 
-func (x *RefreshToeknRequest) String() string {
+func (x *RefreshTokenRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RefreshToeknRequest) ProtoMessage() {}
+func (*RefreshTokenRequest) ProtoMessage() {}
 
-func (x *RefreshToeknRequest) ProtoReflect() protoreflect.Message {
+func (x *RefreshTokenRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_svc_auth_svc_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -275,12 +275,12 @@ func (x *RefreshToeknRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RefreshToeknRequest.ProtoReflect.Descriptor instead.
-func (*RefreshToeknRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use RefreshTokenRequest.ProtoReflect.Descriptor instead.
+func (*RefreshTokenRequest) Descriptor() ([]byte, []int) {
 	return file_auth_svc_auth_svc_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *RefreshToeknRequest) GetRefreshToken() string {
+func (x *RefreshTokenRequest) GetRefreshToken() string {
 	if x != nil {
 		return x.RefreshToken
 	}
@@ -546,7 +546,7 @@ func (x *SignInResponse) GetRefreshToken() string {
 	return ""
 }
 
-type RefreshToeknResponse struct {
+type RefreshTokenResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -555,8 +555,8 @@ type RefreshToeknResponse struct {
 	RefreshToken string `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 }
 
-func (x *RefreshToeknResponse) Reset() {
-	*x = RefreshToeknResponse{}
+func (x *RefreshTokenResponse) Reset() {
+	*x = RefreshTokenResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_auth_svc_auth_svc_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -564,13 +564,13 @@ func (x *RefreshToeknResponse) Reset() {
 	}
 }
 
-func (x *RefreshToeknResponse) String() string {
+func (x *RefreshTokenResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RefreshToeknResponse) ProtoMessage() {}
+func (*RefreshTokenResponse) ProtoMessage() {}
 
-func (x *RefreshToeknResponse) ProtoReflect() protoreflect.Message {
+func (x *RefreshTokenResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_svc_auth_svc_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -582,19 +582,19 @@ func (x *RefreshToeknResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RefreshToeknResponse.ProtoReflect.Descriptor instead.
-func (*RefreshToeknResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use RefreshTokenResponse.ProtoReflect.Descriptor instead.
+func (*RefreshTokenResponse) Descriptor() ([]byte, []int) {
 	return file_auth_svc_auth_svc_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *RefreshToeknResponse) GetAccessToken() string {
+func (x *RefreshTokenResponse) GetAccessToken() string {
 	if x != nil {
 		return x.AccessToken
 	}
 	return ""
 }
 
-func (x *RefreshToeknResponse) GetRefreshToken() string {
+func (x *RefreshTokenResponse) GetRefreshToken() string {
 	if x != nil {
 		return x.RefreshToken
 	}
@@ -623,7 +623,7 @@ var file_auth_svc_auth_svc_proto_rawDesc = []byte{
 	0x55, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73,
 	0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65,
 	0x72, 0x49, 0x64, 0x22, 0x3a, 0x0a, 0x13, 0x52, 0x65, 0x66, 0x72, 0x65, 0x73, 0x68, 0x54, 0x6f,
-	0x65, 0x6b, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x23, 0x0a, 0x0d, 0x72, 0x65,
+	0x6b, 0x65, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x23, 0x0a, 0x0d, 0x72, 0x65,
 	0x66, 0x72, 0x65, 0x73, 0x68, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x0c, 0x72, 0x65, 0x66, 0x72, 0x65, 0x73, 0x68, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x22,
 	0x38, 0x0a, 0x11, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x71,
@@ -647,7 +647,7 @@ var file_auth_svc_auth_svc_proto_rawDesc = []byte{
 	0x6b, 0x65, 0x6e, 0x12, 0x23, 0x0a, 0x0d, 0x72, 0x65, 0x66, 0x72, 0x65, 0x73, 0x68, 0x5f, 0x74,
 	0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x72, 0x65, 0x66, 0x72,
 	0x65, 0x73, 0x68, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x5e, 0x0a, 0x14, 0x52, 0x65, 0x66, 0x72,
-	0x65, 0x73, 0x68, 0x54, 0x6f, 0x65, 0x6b, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x65, 0x73, 0x68, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
 	0x12, 0x21, 0x0a, 0x0c, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x54, 0x6f,
 	0x6b, 0x65, 0x6e, 0x12, 0x23, 0x0a, 0x0d, 0x72, 0x65, 0x66, 0x72, 0x65, 0x73, 0x68, 0x5f, 0x74,
@@ -660,10 +660,10 @@ var file_auth_svc_auth_svc_proto_rawDesc = []byte{
 	0x12, 0x13, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x52, 0x65,
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x53, 0x69, 0x67,
 	0x6e, 0x49, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x45, 0x0a, 0x0c, 0x52,
-	0x65, 0x66, 0x72, 0x65, 0x73, 0x68, 0x54, 0x6f, 0x65, 0x6b, 0x6e, 0x12, 0x19, 0x2e, 0x61, 0x75,
-	0x74, 0x68, 0x2e, 0x52, 0x65, 0x66, 0x72, 0x65, 0x73, 0x68, 0x54, 0x6f, 0x65, 0x6b, 0x6e, 0x52,
+	0x65, 0x66, 0x72, 0x65, 0x73, 0x68, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x19, 0x2e, 0x61, 0x75,
+	0x74, 0x68, 0x2e, 0x52, 0x65, 0x66, 0x72, 0x65, 0x73, 0x68, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52,
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x52, 0x65,
-	0x66, 0x72, 0x65, 0x73, 0x68, 0x54, 0x6f, 0x65, 0x6b, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x66, 0x72, 0x65, 0x73, 0x68, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
 	0x73, 0x65, 0x12, 0x3f, 0x0a, 0x0a, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x54, 0x6f, 0x6b, 0x65, 0x6e,
 	0x12, 0x17, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x54, 0x6f, 0x6b,
 	0x65, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x61, 0x75, 0x74, 0x68,
@@ -694,23 +694,23 @@ var file_auth_svc_auth_svc_proto_goTypes = []interface{}{
 	(*GetTokenRequest)(nil),      // 1: auth.GetTokenRequest
 	(*TakePinRequest)(nil),       // 2: auth.TakePinRequest
 	(*SignUpResponse)(nil),       // 3: auth.SignUpResponse
-	(*RefreshToeknRequest)(nil),  // 4: auth.RefreshToeknRequest
+	(*RefreshTokenRequest)(nil),  // 4: auth.RefreshTokenRequest
 	(*CheckTokenRequest)(nil),    // 5: auth.CheckTokenRequest
 	(*CheckTokenResponse)(nil),   // 6: auth.CheckTokenResponse
 	(*TakePinResponse)(nil),      // 7: auth.TakePinResponse
 	(*SignInRequest)(nil),        // 8: auth.SignInRequest
 	(*SignInResponse)(nil),       // 9: auth.SignInResponse
-	(*RefreshToeknResponse)(nil), // 10: auth.RefreshToeknResponse
+	(*RefreshTokenResponse)(nil), // 10: auth.RefreshTokenResponse
 }
 var file_auth_svc_auth_svc_proto_depIdxs = []int32{
 	0,  // 0: auth.Auth.SignUp:input_type -> auth.SignUpRequest
 	8,  // 1: auth.Auth.SignIn:input_type -> auth.SignInRequest
-	4,  // 2: auth.Auth.RefreshToekn:input_type -> auth.RefreshToeknRequest
+	4,  // 2: auth.Auth.RefreshToken:input_type -> auth.RefreshTokenRequest
 	5,  // 3: auth.Auth.CheckToken:input_type -> auth.CheckTokenRequest
 	2,  // 4: auth.Auth.TakePin:input_type -> auth.TakePinRequest
 	3,  // 5: auth.Auth.SignUp:output_type -> auth.SignUpResponse
 	9,  // 6: auth.Auth.SignIn:output_type -> auth.SignInResponse
-	10, // 7: auth.Auth.RefreshToekn:output_type -> auth.RefreshToeknResponse
+	10, // 7: auth.Auth.RefreshToken:output_type -> auth.RefreshTokenResponse
 	6,  // 8: auth.Auth.CheckToken:output_type -> auth.CheckTokenResponse
 	7,  // 9: auth.Auth.TakePin:output_type -> auth.TakePinResponse
 	5,  // [5:10] is the sub-list for method output_type
@@ -775,7 +775,7 @@ func file_auth_svc_auth_svc_proto_init() {
 			}
 		}
 		file_auth_svc_auth_svc_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RefreshToeknRequest); i {
+			switch v := v.(*RefreshTokenRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -847,7 +847,7 @@ func file_auth_svc_auth_svc_proto_init() {
 			}
 		}
 		file_auth_svc_auth_svc_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RefreshToeknResponse); i {
+			switch v := v.(*RefreshTokenResponse); i {
 			case 0:
 				return &v.state
 			case 1:

@@ -7,7 +7,7 @@ option go_package = "sssjkk.auth.v1;auth1";
 service Auth { 
   rpc SignUp (SignUpRequest) returns (SignUpResponse); 
   rpc SignIn (SignInRequest) returns (SignInResponse);
-  rpc RefreshToekn (RefreshToeknRequest) returns (RefreshToeknResponse);
+  rpc RefreshToken (RefreshTokenRequest) returns (RefreshTokenResponse);
   rpc CheckToken (CheckTokenRequest) returns (CheckTokenResponse);
   rpc TakePin (TakePinRequest) returns (TakePinResponse);
 
@@ -31,7 +31,7 @@ message TakePinRequest {
 message SignUpResponse {
   int64 user_id = 1; 
 }
-message RefreshToeknRequest {
+message RefreshTokenRequest {
   string refresh_token = 1; 
 }
 message CheckTokenRequest {
@@ -54,7 +54,7 @@ message SignInResponse {
   string access_token = 1; 
   string refresh_token = 2; 
 }
-message RefreshToeknResponse {
+message RefreshTokenResponse {
   string access_token = 1; 
   string refresh_token = 2; 
 }
