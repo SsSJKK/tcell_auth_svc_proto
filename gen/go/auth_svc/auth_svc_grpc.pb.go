@@ -22,12 +22,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthClient interface {
-	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
-	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
-	Refresh(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error)
+	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error)
+	SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInResponse, error)
+	RefreshToekn(ctx context.Context, in *RefreshToeknRequest, opts ...grpc.CallOption) (*RefreshToeknResponse, error)
 	CheckToken(ctx context.Context, in *CheckTokenRequest, opts ...grpc.CallOption) (*CheckTokenResponse, error)
-	GetToken(ctx context.Context, in *CheckTokenRequest, opts ...grpc.CallOption) (*GetTokenResponse, error)
-	GetPin(ctx context.Context, in *GetPinRequest, opts ...grpc.CallOption) (*GetPinResponse, error)
+	TakePin(ctx context.Context, in *TakePinRequest, opts ...grpc.CallOption) (*TakePinResponse, error)
 }
 
 type authClient struct {
@@ -38,27 +37,27 @@ func NewAuthClient(cc grpc.ClientConnInterface) AuthClient {
 	return &authClient{cc}
 }
 
-func (c *authClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error) {
-	out := new(RegisterResponse)
-	err := c.cc.Invoke(ctx, "/auth.Auth/Register", in, out, opts...)
+func (c *authClient) SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error) {
+	out := new(SignUpResponse)
+	err := c.cc.Invoke(ctx, "/auth.Auth/SignUp", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
-	out := new(LoginResponse)
-	err := c.cc.Invoke(ctx, "/auth.Auth/Login", in, out, opts...)
+func (c *authClient) SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInResponse, error) {
+	out := new(SignInResponse)
+	err := c.cc.Invoke(ctx, "/auth.Auth/SignIn", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authClient) Refresh(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error) {
-	out := new(RefreshResponse)
-	err := c.cc.Invoke(ctx, "/auth.Auth/Refresh", in, out, opts...)
+func (c *authClient) RefreshToekn(ctx context.Context, in *RefreshToeknRequest, opts ...grpc.CallOption) (*RefreshToeknResponse, error) {
+	out := new(RefreshToeknResponse)
+	err := c.cc.Invoke(ctx, "/auth.Auth/RefreshToekn", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -74,18 +73,9 @@ func (c *authClient) CheckToken(ctx context.Context, in *CheckTokenRequest, opts
 	return out, nil
 }
 
-func (c *authClient) GetToken(ctx context.Context, in *CheckTokenRequest, opts ...grpc.CallOption) (*GetTokenResponse, error) {
-	out := new(GetTokenResponse)
-	err := c.cc.Invoke(ctx, "/auth.Auth/GetToken", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *authClient) GetPin(ctx context.Context, in *GetPinRequest, opts ...grpc.CallOption) (*GetPinResponse, error) {
-	out := new(GetPinResponse)
-	err := c.cc.Invoke(ctx, "/auth.Auth/GetPin", in, out, opts...)
+func (c *authClient) TakePin(ctx context.Context, in *TakePinRequest, opts ...grpc.CallOption) (*TakePinResponse, error) {
+	out := new(TakePinResponse)
+	err := c.cc.Invoke(ctx, "/auth.Auth/TakePin", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -96,12 +86,11 @@ func (c *authClient) GetPin(ctx context.Context, in *GetPinRequest, opts ...grpc
 // All implementations must embed UnimplementedAuthServer
 // for forward compatibility
 type AuthServer interface {
-	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
-	Login(context.Context, *LoginRequest) (*LoginResponse, error)
-	Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error)
+	SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error)
+	SignIn(context.Context, *SignInRequest) (*SignInResponse, error)
+	RefreshToekn(context.Context, *RefreshToeknRequest) (*RefreshToeknResponse, error)
 	CheckToken(context.Context, *CheckTokenRequest) (*CheckTokenResponse, error)
-	GetToken(context.Context, *CheckTokenRequest) (*GetTokenResponse, error)
-	GetPin(context.Context, *GetPinRequest) (*GetPinResponse, error)
+	TakePin(context.Context, *TakePinRequest) (*TakePinResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -109,23 +98,20 @@ type AuthServer interface {
 type UnimplementedAuthServer struct {
 }
 
-func (UnimplementedAuthServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
+func (UnimplementedAuthServer) SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignUp not implemented")
 }
-func (UnimplementedAuthServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+func (UnimplementedAuthServer) SignIn(context.Context, *SignInRequest) (*SignInResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignIn not implemented")
 }
-func (UnimplementedAuthServer) Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
+func (UnimplementedAuthServer) RefreshToekn(context.Context, *RefreshToeknRequest) (*RefreshToeknResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RefreshToekn not implemented")
 }
 func (UnimplementedAuthServer) CheckToken(context.Context, *CheckTokenRequest) (*CheckTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckToken not implemented")
 }
-func (UnimplementedAuthServer) GetToken(context.Context, *CheckTokenRequest) (*GetTokenResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetToken not implemented")
-}
-func (UnimplementedAuthServer) GetPin(context.Context, *GetPinRequest) (*GetPinResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPin not implemented")
+func (UnimplementedAuthServer) TakePin(context.Context, *TakePinRequest) (*TakePinResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TakePin not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 
@@ -140,56 +126,56 @@ func RegisterAuthServer(s grpc.ServiceRegistrar, srv AuthServer) {
 	s.RegisterService(&Auth_ServiceDesc, srv)
 }
 
-func _Auth_Register_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RegisterRequest)
+func _Auth_SignUp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SignUpRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).Register(ctx, in)
+		return srv.(AuthServer).SignUp(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/auth.Auth/Register",
+		FullMethod: "/auth.Auth/SignUp",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).Register(ctx, req.(*RegisterRequest))
+		return srv.(AuthServer).SignUp(ctx, req.(*SignUpRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LoginRequest)
+func _Auth_SignIn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SignInRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).Login(ctx, in)
+		return srv.(AuthServer).SignIn(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/auth.Auth/Login",
+		FullMethod: "/auth.Auth/SignIn",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).Login(ctx, req.(*LoginRequest))
+		return srv.(AuthServer).SignIn(ctx, req.(*SignInRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RefreshRequest)
+func _Auth_RefreshToekn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RefreshToeknRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).Refresh(ctx, in)
+		return srv.(AuthServer).RefreshToekn(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/auth.Auth/Refresh",
+		FullMethod: "/auth.Auth/RefreshToekn",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).Refresh(ctx, req.(*RefreshRequest))
+		return srv.(AuthServer).RefreshToekn(ctx, req.(*RefreshToeknRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -212,38 +198,20 @@ func _Auth_CheckToken_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_GetToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckTokenRequest)
+func _Auth_TakePin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TakePinRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).GetToken(ctx, in)
+		return srv.(AuthServer).TakePin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/auth.Auth/GetToken",
+		FullMethod: "/auth.Auth/TakePin",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).GetToken(ctx, req.(*CheckTokenRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Auth_GetPin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPinRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AuthServer).GetPin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/auth.Auth/GetPin",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).GetPin(ctx, req.(*GetPinRequest))
+		return srv.(AuthServer).TakePin(ctx, req.(*TakePinRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -256,28 +224,24 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AuthServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Register",
-			Handler:    _Auth_Register_Handler,
+			MethodName: "SignUp",
+			Handler:    _Auth_SignUp_Handler,
 		},
 		{
-			MethodName: "Login",
-			Handler:    _Auth_Login_Handler,
+			MethodName: "SignIn",
+			Handler:    _Auth_SignIn_Handler,
 		},
 		{
-			MethodName: "Refresh",
-			Handler:    _Auth_Refresh_Handler,
+			MethodName: "RefreshToekn",
+			Handler:    _Auth_RefreshToekn_Handler,
 		},
 		{
 			MethodName: "CheckToken",
 			Handler:    _Auth_CheckToken_Handler,
 		},
 		{
-			MethodName: "GetToken",
-			Handler:    _Auth_GetToken_Handler,
-		},
-		{
-			MethodName: "GetPin",
-			Handler:    _Auth_GetPin_Handler,
+			MethodName: "TakePin",
+			Handler:    _Auth_TakePin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

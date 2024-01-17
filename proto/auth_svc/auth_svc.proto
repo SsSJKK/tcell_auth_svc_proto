@@ -5,16 +5,15 @@ package auth;
 option go_package = "sssjkk.auth.v1;auth1";
 
 service Auth { 
-  rpc Register (RegisterRequest) returns (RegisterResponse); 
-  rpc Login (LoginRequest) returns (LoginResponse);
-  rpc Refresh (RefreshRequest) returns (RefreshResponse);
+  rpc SignUp (SignUpRequest) returns (SignUpResponse); 
+  rpc SignIn (SignInRequest) returns (SignInResponse);
+  rpc RefreshToekn (RefreshToeknRequest) returns (RefreshToeknResponse);
   rpc CheckToken (CheckTokenRequest) returns (CheckTokenResponse);
-  rpc GetToken (CheckTokenRequest) returns (GetTokenResponse);
-  rpc GetPin (GetPinRequest) returns (GetPinResponse);
+  rpc TakePin (TakePinRequest) returns (TakePinResponse);
 
 }
 
-message RegisterRequest {
+message SignUpRequest {
   string login = 1; 
   string password = 2;
   int32  app_id = 3;
@@ -24,18 +23,15 @@ message GetTokenRequest {
   string login = 1; 
   int32  app_id = 2;
 }
-message GetPinRequest {
+message TakePinRequest {
   string login = 1; 
   int32  app_id = 2;
 }
-message GetTokenResponse {
-  bool status = 1;
-}
 
-message RegisterResponse {
+message SignUpResponse {
   int64 user_id = 1; 
 }
-message RefreshRequest {
+message RefreshToeknRequest {
   string refresh_token = 1; 
 }
 message CheckTokenRequest {
@@ -44,21 +40,21 @@ message CheckTokenRequest {
 message CheckTokenResponse {
   int64 user_id = 1; 
 }
-message GetPinResponse {
+message TakePinResponse {
   int64 user_id = 1; 
 }
 
-message LoginRequest {
+message SignInRequest {
   string login = 1; 
   string password = 2;  
   int32  app_id = 3;
 }
 
-message LoginResponse {
+message SignInResponse {
   string access_token = 1; 
   string refresh_token = 2; 
 }
-message RefreshResponse {
+message RefreshToeknResponse {
   string access_token = 1; 
   string refresh_token = 2; 
 }
