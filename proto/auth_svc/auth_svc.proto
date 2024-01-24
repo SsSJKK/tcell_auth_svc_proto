@@ -17,10 +17,11 @@ message SignUpRequest {
   string login = 1; 
   string password = 2;
   int32  app_id = 3;
+  string email = 4; 
 }
 
 message TakePinRequest {
-  string login = 1; 
+  string phone_number = 1; 
   int32  app_id = 2;
 }
 
@@ -50,6 +51,7 @@ message SignInRequest {
   string login = 1; 
   string password = 2;  
   int32  app_id = 3;
+  string auth_type = 4;  
 }
 
 message SignInResponse {
