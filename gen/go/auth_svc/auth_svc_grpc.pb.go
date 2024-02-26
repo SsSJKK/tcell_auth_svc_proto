@@ -26,6 +26,7 @@ type AuthClient interface {
 	SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInResponse, error)
 	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
 	CheckToken(ctx context.Context, in *CheckTokenRequest, opts ...grpc.CallOption) (*CheckTokenResponse, error)
+	CheckPermisson(ctx context.Context, in *CheckPermissonRequest, opts ...grpc.CallOption) (*CheckPermissonResponse, error)
 	TakePin(ctx context.Context, in *TakePinRequest, opts ...grpc.CallOption) (*TakePinResponse, error)
 }
 
@@ -73,6 +74,15 @@ func (c *authClient) CheckToken(ctx context.Context, in *CheckTokenRequest, opts
 	return out, nil
 }
 
+func (c *authClient) CheckPermisson(ctx context.Context, in *CheckPermissonRequest, opts ...grpc.CallOption) (*CheckPermissonResponse, error) {
+	out := new(CheckPermissonResponse)
+	err := c.cc.Invoke(ctx, "/auth.Auth/CheckPermisson", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authClient) TakePin(ctx context.Context, in *TakePinRequest, opts ...grpc.CallOption) (*TakePinResponse, error) {
 	out := new(TakePinResponse)
 	err := c.cc.Invoke(ctx, "/auth.Auth/TakePin", in, out, opts...)
@@ -90,6 +100,7 @@ type AuthServer interface {
 	SignIn(context.Context, *SignInRequest) (*SignInResponse, error)
 	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
 	CheckToken(context.Context, *CheckTokenRequest) (*CheckTokenResponse, error)
+	CheckPermisson(context.Context, *CheckPermissonRequest) (*CheckPermissonResponse, error)
 	TakePin(context.Context, *TakePinRequest) (*TakePinResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
@@ -109,6 +120,9 @@ func (UnimplementedAuthServer) RefreshToken(context.Context, *RefreshTokenReques
 }
 func (UnimplementedAuthServer) CheckToken(context.Context, *CheckTokenRequest) (*CheckTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckToken not implemented")
+}
+func (UnimplementedAuthServer) CheckPermisson(context.Context, *CheckPermissonRequest) (*CheckPermissonResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckPermisson not implemented")
 }
 func (UnimplementedAuthServer) TakePin(context.Context, *TakePinRequest) (*TakePinResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TakePin not implemented")
@@ -198,6 +212,24 @@ func _Auth_CheckToken_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_CheckPermisson_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckPermissonRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).CheckPermisson(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/auth.Auth/CheckPermisson",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).CheckPermisson(ctx, req.(*CheckPermissonRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Auth_TakePin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TakePinRequest)
 	if err := dec(in); err != nil {
@@ -238,6 +270,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckToken",
 			Handler:    _Auth_CheckToken_Handler,
+		},
+		{
+			MethodName: "CheckPermisson",
+			Handler:    _Auth_CheckPermisson_Handler,
 		},
 		{
 			MethodName: "TakePin",

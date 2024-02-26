@@ -429,6 +429,140 @@ func (x *CheckTokenResponse) GetPhoneNumber() string {
 	return ""
 }
 
+type CheckPermissonRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	RefreshToken string `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	Action       string `protobuf:"bytes,2,opt,name=action,proto3" json:"action,omitempty"`
+	AppId        int32  `protobuf:"varint,3,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
+}
+
+func (x *CheckPermissonRequest) Reset() {
+	*x = CheckPermissonRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_auth_svc_auth_svc_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CheckPermissonRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckPermissonRequest) ProtoMessage() {}
+
+func (x *CheckPermissonRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_svc_auth_svc_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckPermissonRequest.ProtoReflect.Descriptor instead.
+func (*CheckPermissonRequest) Descriptor() ([]byte, []int) {
+	return file_auth_svc_auth_svc_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *CheckPermissonRequest) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
+func (x *CheckPermissonRequest) GetAction() string {
+	if x != nil {
+		return x.Action
+	}
+	return ""
+}
+
+func (x *CheckPermissonRequest) GetAppId() int32 {
+	if x != nil {
+		return x.AppId
+	}
+	return 0
+}
+
+type CheckPermissonResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId      int64  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Login       string `protobuf:"bytes,2,opt,name=login,proto3" json:"login,omitempty"`
+	Email       string `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	PhoneNumber string `protobuf:"bytes,4,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty"`
+}
+
+func (x *CheckPermissonResponse) Reset() {
+	*x = CheckPermissonResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_auth_svc_auth_svc_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CheckPermissonResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckPermissonResponse) ProtoMessage() {}
+
+func (x *CheckPermissonResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_svc_auth_svc_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckPermissonResponse.ProtoReflect.Descriptor instead.
+func (*CheckPermissonResponse) Descriptor() ([]byte, []int) {
+	return file_auth_svc_auth_svc_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *CheckPermissonResponse) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *CheckPermissonResponse) GetLogin() string {
+	if x != nil {
+		return x.Login
+	}
+	return ""
+}
+
+func (x *CheckPermissonResponse) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *CheckPermissonResponse) GetPhoneNumber() string {
+	if x != nil {
+		return x.PhoneNumber
+	}
+	return ""
+}
+
 type TakePinResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -440,7 +574,7 @@ type TakePinResponse struct {
 func (x *TakePinResponse) Reset() {
 	*x = TakePinResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_auth_svc_auth_svc_proto_msgTypes[7]
+		mi := &file_auth_svc_auth_svc_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -453,7 +587,7 @@ func (x *TakePinResponse) String() string {
 func (*TakePinResponse) ProtoMessage() {}
 
 func (x *TakePinResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_svc_auth_svc_proto_msgTypes[7]
+	mi := &file_auth_svc_auth_svc_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -466,7 +600,7 @@ func (x *TakePinResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TakePinResponse.ProtoReflect.Descriptor instead.
 func (*TakePinResponse) Descriptor() ([]byte, []int) {
-	return file_auth_svc_auth_svc_proto_rawDescGZIP(), []int{7}
+	return file_auth_svc_auth_svc_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *TakePinResponse) GetUserId() int64 {
@@ -492,7 +626,7 @@ type SignInRequest struct {
 func (x *SignInRequest) Reset() {
 	*x = SignInRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_auth_svc_auth_svc_proto_msgTypes[8]
+		mi := &file_auth_svc_auth_svc_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -505,7 +639,7 @@ func (x *SignInRequest) String() string {
 func (*SignInRequest) ProtoMessage() {}
 
 func (x *SignInRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_svc_auth_svc_proto_msgTypes[8]
+	mi := &file_auth_svc_auth_svc_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -518,7 +652,7 @@ func (x *SignInRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignInRequest.ProtoReflect.Descriptor instead.
 func (*SignInRequest) Descriptor() ([]byte, []int) {
-	return file_auth_svc_auth_svc_proto_rawDescGZIP(), []int{8}
+	return file_auth_svc_auth_svc_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *SignInRequest) GetLogin() string {
@@ -575,7 +709,7 @@ type SignInResponse struct {
 func (x *SignInResponse) Reset() {
 	*x = SignInResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_auth_svc_auth_svc_proto_msgTypes[9]
+		mi := &file_auth_svc_auth_svc_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -588,7 +722,7 @@ func (x *SignInResponse) String() string {
 func (*SignInResponse) ProtoMessage() {}
 
 func (x *SignInResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_svc_auth_svc_proto_msgTypes[9]
+	mi := &file_auth_svc_auth_svc_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -601,7 +735,7 @@ func (x *SignInResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SignInResponse.ProtoReflect.Descriptor instead.
 func (*SignInResponse) Descriptor() ([]byte, []int) {
-	return file_auth_svc_auth_svc_proto_rawDescGZIP(), []int{9}
+	return file_auth_svc_auth_svc_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *SignInResponse) GetAccessToken() string {
@@ -661,6 +795,21 @@ var file_auth_svc_auth_svc_proto_rawDesc = []byte{
 	0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05,
 	0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x21, 0x0a, 0x0c, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x5f, 0x6e,
 	0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x70, 0x68, 0x6f,
+	0x6e, 0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x22, 0x6b, 0x0a, 0x15, 0x43, 0x68, 0x65, 0x63,
+	0x6b, 0x50, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x23, 0x0a, 0x0d, 0x72, 0x65, 0x66, 0x72, 0x65, 0x73, 0x68, 0x5f, 0x74, 0x6f, 0x6b,
+	0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x72, 0x65, 0x66, 0x72, 0x65, 0x73,
+	0x68, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x15,
+	0x0a, 0x06, 0x61, 0x70, 0x70, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05,
+	0x61, 0x70, 0x70, 0x49, 0x64, 0x22, 0x80, 0x01, 0x0a, 0x16, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x50,
+	0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x6f, 0x67,
+	0x69, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x6f, 0x67, 0x69, 0x6e, 0x12,
+	0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05,
+	0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x21, 0x0a, 0x0c, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x5f, 0x6e,
+	0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x70, 0x68, 0x6f,
 	0x6e, 0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x22, 0x2a, 0x0a, 0x0f, 0x54, 0x61, 0x6b, 0x65,
 	0x50, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x17, 0x0a, 0x07, 0x75,
 	0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73,
@@ -681,7 +830,7 @@ var file_auth_svc_auth_svc_proto_rawDesc = []byte{
 	0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x61, 0x63, 0x63, 0x65,
 	0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x23, 0x0a, 0x0d, 0x72, 0x65, 0x66, 0x72, 0x65,
 	0x73, 0x68, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c,
-	0x72, 0x65, 0x66, 0x72, 0x65, 0x73, 0x68, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x32, 0xb0, 0x02, 0x0a,
+	0x72, 0x65, 0x66, 0x72, 0x65, 0x73, 0x68, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x32, 0xfd, 0x02, 0x0a,
 	0x04, 0x41, 0x75, 0x74, 0x68, 0x12, 0x33, 0x0a, 0x06, 0x53, 0x69, 0x67, 0x6e, 0x55, 0x70, 0x12,
 	0x13, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x55, 0x70, 0x52, 0x65, 0x71,
 	0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x53, 0x69, 0x67, 0x6e,
@@ -697,12 +846,17 @@ var file_auth_svc_auth_svc_proto_rawDesc = []byte{
 	0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x17, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x43, 0x68, 0x65, 0x63,
 	0x6b, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e,
 	0x61, 0x75, 0x74, 0x68, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x07, 0x54, 0x61, 0x6b, 0x65, 0x50,
-	0x69, 0x6e, 0x12, 0x14, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x54, 0x61, 0x6b, 0x65, 0x50, 0x69,
-	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e,
-	0x54, 0x61, 0x6b, 0x65, 0x50, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42,
-	0x16, 0x5a, 0x14, 0x73, 0x73, 0x73, 0x6a, 0x6b, 0x6b, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x76,
-	0x31, 0x3b, 0x61, 0x75, 0x74, 0x68, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4b, 0x0a, 0x0e, 0x43, 0x68, 0x65, 0x63, 0x6b,
+	0x50, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x6f, 0x6e, 0x12, 0x1b, 0x2e, 0x61, 0x75, 0x74, 0x68,
+	0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x50, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x6f, 0x6e, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x43, 0x68,
+	0x65, 0x63, 0x6b, 0x50, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x07, 0x54, 0x61, 0x6b, 0x65, 0x50, 0x69, 0x6e, 0x12,
+	0x14, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x54, 0x61, 0x6b, 0x65, 0x50, 0x69, 0x6e, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x54, 0x61, 0x6b,
+	0x65, 0x50, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x16, 0x5a, 0x14,
+	0x73, 0x73, 0x73, 0x6a, 0x6b, 0x6b, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x76, 0x31, 0x3b, 0x61,
+	0x75, 0x74, 0x68, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -717,35 +871,39 @@ func file_auth_svc_auth_svc_proto_rawDescGZIP() []byte {
 	return file_auth_svc_auth_svc_proto_rawDescData
 }
 
-var file_auth_svc_auth_svc_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_auth_svc_auth_svc_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_auth_svc_auth_svc_proto_goTypes = []interface{}{
-	(*SignUpRequest)(nil),        // 0: auth.SignUpRequest
-	(*TakePinRequest)(nil),       // 1: auth.TakePinRequest
-	(*SignUpResponse)(nil),       // 2: auth.SignUpResponse
-	(*RefreshTokenRequest)(nil),  // 3: auth.RefreshTokenRequest
-	(*RefreshTokenResponse)(nil), // 4: auth.RefreshTokenResponse
-	(*CheckTokenRequest)(nil),    // 5: auth.CheckTokenRequest
-	(*CheckTokenResponse)(nil),   // 6: auth.CheckTokenResponse
-	(*TakePinResponse)(nil),      // 7: auth.TakePinResponse
-	(*SignInRequest)(nil),        // 8: auth.SignInRequest
-	(*SignInResponse)(nil),       // 9: auth.SignInResponse
+	(*SignUpRequest)(nil),          // 0: auth.SignUpRequest
+	(*TakePinRequest)(nil),         // 1: auth.TakePinRequest
+	(*SignUpResponse)(nil),         // 2: auth.SignUpResponse
+	(*RefreshTokenRequest)(nil),    // 3: auth.RefreshTokenRequest
+	(*RefreshTokenResponse)(nil),   // 4: auth.RefreshTokenResponse
+	(*CheckTokenRequest)(nil),      // 5: auth.CheckTokenRequest
+	(*CheckTokenResponse)(nil),     // 6: auth.CheckTokenResponse
+	(*CheckPermissonRequest)(nil),  // 7: auth.CheckPermissonRequest
+	(*CheckPermissonResponse)(nil), // 8: auth.CheckPermissonResponse
+	(*TakePinResponse)(nil),        // 9: auth.TakePinResponse
+	(*SignInRequest)(nil),          // 10: auth.SignInRequest
+	(*SignInResponse)(nil),         // 11: auth.SignInResponse
 }
 var file_auth_svc_auth_svc_proto_depIdxs = []int32{
-	0, // 0: auth.Auth.SignUp:input_type -> auth.SignUpRequest
-	8, // 1: auth.Auth.SignIn:input_type -> auth.SignInRequest
-	3, // 2: auth.Auth.RefreshToken:input_type -> auth.RefreshTokenRequest
-	5, // 3: auth.Auth.CheckToken:input_type -> auth.CheckTokenRequest
-	1, // 4: auth.Auth.TakePin:input_type -> auth.TakePinRequest
-	2, // 5: auth.Auth.SignUp:output_type -> auth.SignUpResponse
-	9, // 6: auth.Auth.SignIn:output_type -> auth.SignInResponse
-	4, // 7: auth.Auth.RefreshToken:output_type -> auth.RefreshTokenResponse
-	6, // 8: auth.Auth.CheckToken:output_type -> auth.CheckTokenResponse
-	7, // 9: auth.Auth.TakePin:output_type -> auth.TakePinResponse
-	5, // [5:10] is the sub-list for method output_type
-	0, // [0:5] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,  // 0: auth.Auth.SignUp:input_type -> auth.SignUpRequest
+	10, // 1: auth.Auth.SignIn:input_type -> auth.SignInRequest
+	3,  // 2: auth.Auth.RefreshToken:input_type -> auth.RefreshTokenRequest
+	5,  // 3: auth.Auth.CheckToken:input_type -> auth.CheckTokenRequest
+	7,  // 4: auth.Auth.CheckPermisson:input_type -> auth.CheckPermissonRequest
+	1,  // 5: auth.Auth.TakePin:input_type -> auth.TakePinRequest
+	2,  // 6: auth.Auth.SignUp:output_type -> auth.SignUpResponse
+	11, // 7: auth.Auth.SignIn:output_type -> auth.SignInResponse
+	4,  // 8: auth.Auth.RefreshToken:output_type -> auth.RefreshTokenResponse
+	6,  // 9: auth.Auth.CheckToken:output_type -> auth.CheckTokenResponse
+	8,  // 10: auth.Auth.CheckPermisson:output_type -> auth.CheckPermissonResponse
+	9,  // 11: auth.Auth.TakePin:output_type -> auth.TakePinResponse
+	6,  // [6:12] is the sub-list for method output_type
+	0,  // [0:6] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_auth_svc_auth_svc_proto_init() }
@@ -839,7 +997,7 @@ func file_auth_svc_auth_svc_proto_init() {
 			}
 		}
 		file_auth_svc_auth_svc_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TakePinResponse); i {
+			switch v := v.(*CheckPermissonRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -851,7 +1009,7 @@ func file_auth_svc_auth_svc_proto_init() {
 			}
 		}
 		file_auth_svc_auth_svc_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SignInRequest); i {
+			switch v := v.(*CheckPermissonResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -863,6 +1021,30 @@ func file_auth_svc_auth_svc_proto_init() {
 			}
 		}
 		file_auth_svc_auth_svc_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TakePinResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_auth_svc_auth_svc_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SignInRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_auth_svc_auth_svc_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SignInResponse); i {
 			case 0:
 				return &v.state
@@ -881,7 +1063,7 @@ func file_auth_svc_auth_svc_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_auth_svc_auth_svc_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
