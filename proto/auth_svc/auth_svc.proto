@@ -38,7 +38,7 @@ message RefreshTokenResponse {
   string refresh_token = 2; 
 }
 message CheckTokenRequest {
-  string refresh_token = 1; 
+  string access_token = 1; 
   int32  app_id = 2;
 }
 message CheckTokenResponse {
@@ -48,7 +48,7 @@ message CheckTokenResponse {
   string phone_number = 4;
 }
 message CheckPermissonRequest {
-  string refresh_token = 1; 
+  string access_token = 1; 
   string action = 2;
   int32  app_id = 3;
 }
