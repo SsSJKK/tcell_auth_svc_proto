@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x17\x61uth_svc/auth_svc.proto\x12\x04\x61uth\"O\n\rSignUpRequest\x12\r\n\x05login\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x03 \x01(\x05\x12\r\n\x05\x65mail\x18\x04 \x01(\t\"6\n\x0eTakePinRequest\x12\x14\n\x0cphone_number\x18\x01 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\x05\"!\n\x0eSignUpResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\x03\"<\n\x13RefreshTokenRequest\x12\x15\n\rrefresh_token\x18\x01 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\x05\"C\n\x14RefreshTokenResponse\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x15\n\rrefresh_token\x18\x02 \x01(\t\"9\n\x11\x43heckTokenRequest\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\x05\"Y\n\x12\x43heckTokenResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\x03\x12\r\n\x05login\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x14\n\x0cphone_number\x18\x04 \x01(\t\"M\n\x15\x43heckPermissonRequest\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x0e\n\x06\x61\x63tion\x18\x02 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x03 \x01(\x05\"]\n\x16\x43heckPermissonResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\x03\x12\r\n\x05login\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x14\n\x0cphone_number\x18\x04 \x01(\t\"\"\n\x0fTakePinResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\x03\"\x7f\n\rSignInRequest\x12\r\n\x05login\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x03 \x01(\x05\x12\x11\n\tauth_type\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65vice_info\x18\x05 \x01(\t\x12\x15\n\rsoftware_info\x18\x06 \x01(\t\"=\n\x0eSignInResponse\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x15\n\rrefresh_token\x18\x02 \x01(\t2\xfd\x02\n\x04\x41uth\x12\x33\n\x06SignUp\x12\x13.auth.SignUpRequest\x1a\x14.auth.SignUpResponse\x12\x33\n\x06SignIn\x12\x13.auth.SignInRequest\x1a\x14.auth.SignInResponse\x12\x45\n\x0cRefreshToken\x12\x19.auth.RefreshTokenRequest\x1a\x1a.auth.RefreshTokenResponse\x12?\n\nCheckToken\x12\x17.auth.CheckTokenRequest\x1a\x18.auth.CheckTokenResponse\x12K\n\x0e\x43heckPermisson\x12\x1b.auth.CheckPermissonRequest\x1a\x1c.auth.CheckPermissonResponse\x12\x36\n\x07TakePin\x12\x14.auth.TakePinRequest\x1a\x15.auth.TakePinResponseB\x16Z\x14sssjkk.auth.v1;auth1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x17\x61uth_svc/auth_svc.proto\x12\x04\x61uth\"&\n\x0eSignOutRequest\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\"\"\n\x0fSignOutResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"O\n\rSignUpRequest\x12\r\n\x05login\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x03 \x01(\x05\x12\r\n\x05\x65mail\x18\x04 \x01(\t\"6\n\x0eTakePinRequest\x12\x14\n\x0cphone_number\x18\x01 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\x05\"!\n\x0eSignUpResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\x03\"<\n\x13RefreshTokenRequest\x12\x15\n\rrefresh_token\x18\x01 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\x05\"C\n\x14RefreshTokenResponse\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x15\n\rrefresh_token\x18\x02 \x01(\t\"9\n\x11\x43heckTokenRequest\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\x05\"Y\n\x12\x43heckTokenResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\x03\x12\r\n\x05login\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x14\n\x0cphone_number\x18\x04 \x01(\t\"M\n\x15\x43heckPermissonRequest\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x0e\n\x06\x61\x63tion\x18\x02 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x03 \x01(\x05\"]\n\x16\x43heckPermissonResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\x03\x12\r\n\x05login\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x14\n\x0cphone_number\x18\x04 \x01(\t\"\"\n\x0fTakePinResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\x03\"\x7f\n\rSignInRequest\x12\r\n\x05login\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x03 \x01(\x05\x12\x11\n\tauth_type\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65vice_info\x18\x05 \x01(\t\x12\x15\n\rsoftware_info\x18\x06 \x01(\t\"=\n\x0eSignInResponse\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x15\n\rrefresh_token\x18\x02 \x01(\t2\xb5\x03\n\x04\x41uth\x12\x33\n\x06SignUp\x12\x13.auth.SignUpRequest\x1a\x14.auth.SignUpResponse\x12\x33\n\x06SignIn\x12\x13.auth.SignInRequest\x1a\x14.auth.SignInResponse\x12\x45\n\x0cRefreshToken\x12\x19.auth.RefreshTokenRequest\x1a\x1a.auth.RefreshTokenResponse\x12?\n\nCheckToken\x12\x17.auth.CheckTokenRequest\x1a\x18.auth.CheckTokenResponse\x12K\n\x0e\x43heckPermisson\x12\x1b.auth.CheckPermissonRequest\x1a\x1c.auth.CheckPermissonResponse\x12\x36\n\x07TakePin\x12\x14.auth.TakePinRequest\x1a\x15.auth.TakePinResponse\x12\x36\n\x07SignOut\x12\x14.auth.SignOutRequest\x1a\x15.auth.SignOutResponseB\x16Z\x14sssjkk.auth.v1;auth1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -22,30 +22,34 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'auth_svc.auth_svc_pb2', _gl
 if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['DESCRIPTOR']._options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z\024sssjkk.auth.v1;auth1'
-  _globals['_SIGNUPREQUEST']._serialized_start=33
-  _globals['_SIGNUPREQUEST']._serialized_end=112
-  _globals['_TAKEPINREQUEST']._serialized_start=114
-  _globals['_TAKEPINREQUEST']._serialized_end=168
-  _globals['_SIGNUPRESPONSE']._serialized_start=170
-  _globals['_SIGNUPRESPONSE']._serialized_end=203
-  _globals['_REFRESHTOKENREQUEST']._serialized_start=205
-  _globals['_REFRESHTOKENREQUEST']._serialized_end=265
-  _globals['_REFRESHTOKENRESPONSE']._serialized_start=267
-  _globals['_REFRESHTOKENRESPONSE']._serialized_end=334
-  _globals['_CHECKTOKENREQUEST']._serialized_start=336
-  _globals['_CHECKTOKENREQUEST']._serialized_end=393
-  _globals['_CHECKTOKENRESPONSE']._serialized_start=395
-  _globals['_CHECKTOKENRESPONSE']._serialized_end=484
-  _globals['_CHECKPERMISSONREQUEST']._serialized_start=486
-  _globals['_CHECKPERMISSONREQUEST']._serialized_end=563
-  _globals['_CHECKPERMISSONRESPONSE']._serialized_start=565
-  _globals['_CHECKPERMISSONRESPONSE']._serialized_end=658
-  _globals['_TAKEPINRESPONSE']._serialized_start=660
-  _globals['_TAKEPINRESPONSE']._serialized_end=694
-  _globals['_SIGNINREQUEST']._serialized_start=696
-  _globals['_SIGNINREQUEST']._serialized_end=823
-  _globals['_SIGNINRESPONSE']._serialized_start=825
-  _globals['_SIGNINRESPONSE']._serialized_end=886
-  _globals['_AUTH']._serialized_start=889
-  _globals['_AUTH']._serialized_end=1270
+  _globals['_SIGNOUTREQUEST']._serialized_start=33
+  _globals['_SIGNOUTREQUEST']._serialized_end=71
+  _globals['_SIGNOUTRESPONSE']._serialized_start=73
+  _globals['_SIGNOUTRESPONSE']._serialized_end=107
+  _globals['_SIGNUPREQUEST']._serialized_start=109
+  _globals['_SIGNUPREQUEST']._serialized_end=188
+  _globals['_TAKEPINREQUEST']._serialized_start=190
+  _globals['_TAKEPINREQUEST']._serialized_end=244
+  _globals['_SIGNUPRESPONSE']._serialized_start=246
+  _globals['_SIGNUPRESPONSE']._serialized_end=279
+  _globals['_REFRESHTOKENREQUEST']._serialized_start=281
+  _globals['_REFRESHTOKENREQUEST']._serialized_end=341
+  _globals['_REFRESHTOKENRESPONSE']._serialized_start=343
+  _globals['_REFRESHTOKENRESPONSE']._serialized_end=410
+  _globals['_CHECKTOKENREQUEST']._serialized_start=412
+  _globals['_CHECKTOKENREQUEST']._serialized_end=469
+  _globals['_CHECKTOKENRESPONSE']._serialized_start=471
+  _globals['_CHECKTOKENRESPONSE']._serialized_end=560
+  _globals['_CHECKPERMISSONREQUEST']._serialized_start=562
+  _globals['_CHECKPERMISSONREQUEST']._serialized_end=639
+  _globals['_CHECKPERMISSONRESPONSE']._serialized_start=641
+  _globals['_CHECKPERMISSONRESPONSE']._serialized_end=734
+  _globals['_TAKEPINRESPONSE']._serialized_start=736
+  _globals['_TAKEPINRESPONSE']._serialized_end=770
+  _globals['_SIGNINREQUEST']._serialized_start=772
+  _globals['_SIGNINREQUEST']._serialized_end=899
+  _globals['_SIGNINRESPONSE']._serialized_start=901
+  _globals['_SIGNINRESPONSE']._serialized_end=962
+  _globals['_AUTH']._serialized_start=965
+  _globals['_AUTH']._serialized_end=1402
 # @@protoc_insertion_point(module_scope)

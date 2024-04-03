@@ -11,7 +11,15 @@ service Auth {
   rpc CheckToken (CheckTokenRequest) returns (CheckTokenResponse);
   rpc CheckPermisson (CheckPermissonRequest) returns (CheckPermissonResponse);
   rpc TakePin (TakePinRequest) returns (TakePinResponse);
+  rpc SignOut (SignOutRequest) returns (SignOutResponse);
+}
 
+message SignOutRequest {
+  string access_token = 1; 
+}
+
+message SignOutResponse {
+  bool success = 1; 
 }
 
 message SignUpRequest {
