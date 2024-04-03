@@ -16,6 +16,7 @@ service Auth {
 
 message SignOutRequest {
   string access_token = 1; 
+  int32  app_id = 2;
 }
 
 message SignOutResponse {

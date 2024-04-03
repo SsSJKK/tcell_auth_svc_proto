@@ -5,10 +5,12 @@ from typing import ClassVar as _ClassVar, Optional as _Optional
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class SignOutRequest(_message.Message):
-    __slots__ = ("access_token",)
+    __slots__ = ("access_token", "app_id")
     ACCESS_TOKEN_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
     access_token: str
-    def __init__(self, access_token: _Optional[str] = ...) -> None: ...
+    app_id: int
+    def __init__(self, access_token: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
 
 class SignOutResponse(_message.Message):
     __slots__ = ("success",)
