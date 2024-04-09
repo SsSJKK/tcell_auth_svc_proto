@@ -4,6 +4,52 @@ from typing import ClassVar as _ClassVar, Optional as _Optional
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
+class ChangePasswordRequest(_message.Message):
+    __slots__ = ("old_password", "new_password", "app_id")
+    OLD_PASSWORD_FIELD_NUMBER: _ClassVar[int]
+    NEW_PASSWORD_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    old_password: str
+    new_password: str
+    app_id: int
+    def __init__(self, old_password: _Optional[str] = ..., new_password: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
+
+class ChangePasswordResponse(_message.Message):
+    __slots__ = ("success",)
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    success: bool
+    def __init__(self, success: bool = ...) -> None: ...
+
+class SetPasswordRequest(_message.Message):
+    __slots__ = ("login", "password", "app_id")
+    LOGIN_FIELD_NUMBER: _ClassVar[int]
+    PASSWORD_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    login: str
+    password: str
+    app_id: int
+    def __init__(self, login: _Optional[str] = ..., password: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
+
+class SetPasswordResponse(_message.Message):
+    __slots__ = ("success",)
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    success: bool
+    def __init__(self, success: bool = ...) -> None: ...
+
+class ResetPasswordRequest(_message.Message):
+    __slots__ = ("login", "app_id")
+    LOGIN_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    login: str
+    app_id: int
+    def __init__(self, login: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
+
+class ResetPasswordResponse(_message.Message):
+    __slots__ = ("success",)
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    success: bool
+    def __init__(self, success: bool = ...) -> None: ...
+
 class SignOutRequest(_message.Message):
     __slots__ = ("access_token", "app_id")
     ACCESS_TOKEN_FIELD_NUMBER: _ClassVar[int]

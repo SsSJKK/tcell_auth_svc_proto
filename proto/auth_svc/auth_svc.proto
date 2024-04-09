@@ -12,6 +12,38 @@ service Auth {
   rpc CheckPermisson (CheckPermissonRequest) returns (CheckPermissonResponse);
   rpc TakePin (TakePinRequest) returns (TakePinResponse);
   rpc SignOut (SignOutRequest) returns (SignOutResponse);
+  rpc ResetPassword (ResetPasswordRequest) returns (ResetPasswordResponse);
+  rpc SetPassword (SetPasswordRequest) returns (SetPasswordResponse);
+  rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
+}
+
+message ChangePasswordRequest {
+  string old_password = 1; 
+  string new_password = 2;
+  int32  app_id = 3;
+}
+
+message ChangePasswordResponse {
+  bool success = 1; 
+}
+
+message SetPasswordRequest {
+  string login = 1; 
+  string password = 2;
+  int32  app_id = 3;
+}
+
+message SetPasswordResponse {
+  bool success = 1; 
+}
+
+message ResetPasswordRequest {
+  string login = 1; 
+  int32  app_id = 2;
+}
+
+message ResetPasswordResponse {
+  bool success = 1; 
 }
 
 message SignOutRequest {
