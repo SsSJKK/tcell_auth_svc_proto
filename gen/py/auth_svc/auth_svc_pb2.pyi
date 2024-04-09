@@ -5,14 +5,16 @@ from typing import ClassVar as _ClassVar, Optional as _Optional
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class ChangePasswordRequest(_message.Message):
-    __slots__ = ("old_password", "new_password", "app_id")
+    __slots__ = ("login", "old_password", "new_password", "app_id")
+    LOGIN_FIELD_NUMBER: _ClassVar[int]
     OLD_PASSWORD_FIELD_NUMBER: _ClassVar[int]
     NEW_PASSWORD_FIELD_NUMBER: _ClassVar[int]
     APP_ID_FIELD_NUMBER: _ClassVar[int]
+    login: str
     old_password: str
     new_password: str
     app_id: int
-    def __init__(self, old_password: _Optional[str] = ..., new_password: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
+    def __init__(self, login: _Optional[str] = ..., old_password: _Optional[str] = ..., new_password: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
 
 class ChangePasswordResponse(_message.Message):
     __slots__ = ("success",)
