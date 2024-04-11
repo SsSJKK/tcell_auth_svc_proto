@@ -15,6 +15,7 @@ service Auth {
   rpc ResetPassword (ResetPasswordRequest) returns (ResetPasswordResponse);
   rpc SetPassword (SetPasswordRequest) returns (SetPasswordResponse);
   rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
+  // rpc CheckVersion (CheckVersionRequest) returns (CheckVersionResponse);
 }
 
 message ChangePasswordRequest {
@@ -117,3 +118,5 @@ message SignInResponse {
   string access_token = 1; 
   string refresh_token = 2; 
 }
+
+
