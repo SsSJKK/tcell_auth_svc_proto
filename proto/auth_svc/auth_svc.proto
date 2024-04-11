@@ -12,10 +12,31 @@ service Auth {
   rpc CheckPermisson (CheckPermissonRequest) returns (CheckPermissonResponse);
   rpc TakePin (TakePinRequest) returns (TakePinResponse);
   rpc SignOut (SignOutRequest) returns (SignOutResponse);
+  rpc HasPassword (HasPasswordRequest) returns (HasPasswordResponse);
   rpc ResetPassword (ResetPasswordRequest) returns (ResetPasswordResponse);
   rpc SetPassword (SetPasswordRequest) returns (SetPasswordResponse);
   rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
-  // rpc CheckVersion (CheckVersionRequest) returns (CheckVersionResponse);
+  rpc CheckVersion (CheckVersionRequest) returns (CheckVersionResponse);
+}
+
+
+message CheckVersionRequest {
+  string version = 1; 
+  int32  app_id = 2;
+}
+
+message CheckVersionResponse {
+  bool need_update = 1; 
+  string update_url = 2; 
+}
+
+message HasPasswordRequest {
+  string login = 1; 
+  int32  app_id = 2;
+}
+
+message HasPasswordResponse {
+  bool has_password = 1; 
 }
 
 message ChangePasswordRequest {

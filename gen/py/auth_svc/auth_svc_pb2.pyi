@@ -4,6 +4,36 @@ from typing import ClassVar as _ClassVar, Optional as _Optional
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
+class CheckVersionRequest(_message.Message):
+    __slots__ = ("version", "app_id")
+    VERSION_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    version: str
+    app_id: int
+    def __init__(self, version: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
+
+class CheckVersionResponse(_message.Message):
+    __slots__ = ("need_update", "update_url")
+    NEED_UPDATE_FIELD_NUMBER: _ClassVar[int]
+    UPDATE_URL_FIELD_NUMBER: _ClassVar[int]
+    need_update: bool
+    update_url: str
+    def __init__(self, need_update: bool = ..., update_url: _Optional[str] = ...) -> None: ...
+
+class HasPasswordRequest(_message.Message):
+    __slots__ = ("login", "app_id")
+    LOGIN_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    login: str
+    app_id: int
+    def __init__(self, login: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
+
+class HasPasswordResponse(_message.Message):
+    __slots__ = ("has_password",)
+    HAS_PASSWORD_FIELD_NUMBER: _ClassVar[int]
+    has_password: bool
+    def __init__(self, has_password: bool = ...) -> None: ...
+
 class ChangePasswordRequest(_message.Message):
     __slots__ = ("login", "old_password", "new_password", "app_id")
     LOGIN_FIELD_NUMBER: _ClassVar[int]
