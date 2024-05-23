@@ -25,6 +25,12 @@ const (
 	Auth_CheckToken_FullMethodName     = "/auth.Auth/CheckToken"
 	Auth_CheckPermisson_FullMethodName = "/auth.Auth/CheckPermisson"
 	Auth_TakePin_FullMethodName        = "/auth.Auth/TakePin"
+	Auth_SignOut_FullMethodName        = "/auth.Auth/SignOut"
+	Auth_HasPassword_FullMethodName    = "/auth.Auth/HasPassword"
+	Auth_ResetPassword_FullMethodName  = "/auth.Auth/ResetPassword"
+	Auth_SetPassword_FullMethodName    = "/auth.Auth/SetPassword"
+	Auth_ChangePassword_FullMethodName = "/auth.Auth/ChangePassword"
+	Auth_CheckVersion_FullMethodName   = "/auth.Auth/CheckVersion"
 )
 
 // AuthClient is the client API for Auth service.
@@ -109,7 +115,7 @@ func (c *authClient) TakePin(ctx context.Context, in *TakePinRequest, opts ...gr
 
 func (c *authClient) SignOut(ctx context.Context, in *SignOutRequest, opts ...grpc.CallOption) (*SignOutResponse, error) {
 	out := new(SignOutResponse)
-	err := c.cc.Invoke(ctx, "/auth.Auth/SignOut", in, out, opts...)
+	err := c.cc.Invoke(ctx, Auth_SignOut_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -118,7 +124,7 @@ func (c *authClient) SignOut(ctx context.Context, in *SignOutRequest, opts ...gr
 
 func (c *authClient) HasPassword(ctx context.Context, in *HasPasswordRequest, opts ...grpc.CallOption) (*HasPasswordResponse, error) {
 	out := new(HasPasswordResponse)
-	err := c.cc.Invoke(ctx, "/auth.Auth/HasPassword", in, out, opts...)
+	err := c.cc.Invoke(ctx, Auth_HasPassword_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -127,7 +133,7 @@ func (c *authClient) HasPassword(ctx context.Context, in *HasPasswordRequest, op
 
 func (c *authClient) ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error) {
 	out := new(ResetPasswordResponse)
-	err := c.cc.Invoke(ctx, "/auth.Auth/ResetPassword", in, out, opts...)
+	err := c.cc.Invoke(ctx, Auth_ResetPassword_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -136,7 +142,7 @@ func (c *authClient) ResetPassword(ctx context.Context, in *ResetPasswordRequest
 
 func (c *authClient) SetPassword(ctx context.Context, in *SetPasswordRequest, opts ...grpc.CallOption) (*SetPasswordResponse, error) {
 	out := new(SetPasswordResponse)
-	err := c.cc.Invoke(ctx, "/auth.Auth/SetPassword", in, out, opts...)
+	err := c.cc.Invoke(ctx, Auth_SetPassword_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -145,7 +151,7 @@ func (c *authClient) SetPassword(ctx context.Context, in *SetPasswordRequest, op
 
 func (c *authClient) ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error) {
 	out := new(ChangePasswordResponse)
-	err := c.cc.Invoke(ctx, "/auth.Auth/ChangePassword", in, out, opts...)
+	err := c.cc.Invoke(ctx, Auth_ChangePassword_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -154,7 +160,7 @@ func (c *authClient) ChangePassword(ctx context.Context, in *ChangePasswordReque
 
 func (c *authClient) CheckVersion(ctx context.Context, in *CheckVersionRequest, opts ...grpc.CallOption) (*CheckVersionResponse, error) {
 	out := new(CheckVersionResponse)
-	err := c.cc.Invoke(ctx, "/auth.Auth/CheckVersion", in, out, opts...)
+	err := c.cc.Invoke(ctx, Auth_CheckVersion_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -351,7 +357,7 @@ func _Auth_SignOut_Handler(srv interface{}, ctx context.Context, dec func(interf
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/auth.Auth/SignOut",
+		FullMethod: Auth_SignOut_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).SignOut(ctx, req.(*SignOutRequest))
@@ -369,7 +375,7 @@ func _Auth_HasPassword_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/auth.Auth/HasPassword",
+		FullMethod: Auth_HasPassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).HasPassword(ctx, req.(*HasPasswordRequest))
@@ -387,7 +393,7 @@ func _Auth_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/auth.Auth/ResetPassword",
+		FullMethod: Auth_ResetPassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).ResetPassword(ctx, req.(*ResetPasswordRequest))
@@ -405,7 +411,7 @@ func _Auth_SetPassword_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/auth.Auth/SetPassword",
+		FullMethod: Auth_SetPassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).SetPassword(ctx, req.(*SetPasswordRequest))
@@ -423,7 +429,7 @@ func _Auth_ChangePassword_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/auth.Auth/ChangePassword",
+		FullMethod: Auth_ChangePassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).ChangePassword(ctx, req.(*ChangePasswordRequest))
@@ -441,7 +447,7 @@ func _Auth_CheckVersion_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/auth.Auth/CheckVersion",
+		FullMethod: Auth_CheckVersion_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).CheckVersion(ctx, req.(*CheckVersionRequest))

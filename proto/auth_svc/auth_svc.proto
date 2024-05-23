@@ -115,6 +115,7 @@ message CheckPermissonRequest {
   string access_token = 1; 
   string action = 2;
   int32  app_id = 3;
+  string space = 4;
 }
 message CheckPermissonResponse {
   int64 user_id = 1; 

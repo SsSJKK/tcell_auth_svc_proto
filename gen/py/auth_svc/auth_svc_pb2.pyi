@@ -159,14 +159,16 @@ class CheckTokenResponse(_message.Message):
     def __init__(self, user_id: _Optional[int] = ..., login: _Optional[str] = ..., email: _Optional[str] = ..., phone_number: _Optional[str] = ...) -> None: ...
 
 class CheckPermissonRequest(_message.Message):
-    __slots__ = ("access_token", "action", "app_id")
+    __slots__ = ("access_token", "action", "app_id", "space")
     ACCESS_TOKEN_FIELD_NUMBER: _ClassVar[int]
     ACTION_FIELD_NUMBER: _ClassVar[int]
     APP_ID_FIELD_NUMBER: _ClassVar[int]
+    SPACE_FIELD_NUMBER: _ClassVar[int]
     access_token: str
     action: str
     app_id: int
-    def __init__(self, access_token: _Optional[str] = ..., action: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
+    space: str
+    def __init__(self, access_token: _Optional[str] = ..., action: _Optional[str] = ..., app_id: _Optional[int] = ..., space: _Optional[str] = ...) -> None: ...
 
 class CheckPermissonResponse(_message.Message):
     __slots__ = ("user_id", "login", "email", "phone_number")
