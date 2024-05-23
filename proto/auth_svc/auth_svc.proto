@@ -11,7 +11,71 @@ service Auth {
   rpc CheckToken (CheckTokenRequest) returns (CheckTokenResponse);
   rpc CheckPermisson (CheckPermissonRequest) returns (CheckPermissonResponse);
   rpc TakePin (TakePinRequest) returns (TakePinResponse);
+  rpc SignOut (SignOutRequest) returns (SignOutResponse);
+  rpc HasPassword (HasPasswordRequest) returns (HasPasswordResponse);
+  rpc ResetPassword (ResetPasswordRequest) returns (ResetPasswordResponse);
+  rpc SetPassword (SetPasswordRequest) returns (SetPasswordResponse);
+  rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
+  rpc CheckVersion (CheckVersionRequest) returns (CheckVersionResponse);
+}
 
+
+message CheckVersionRequest {
+  string version = 1; 
+  int32  app_id = 2;
+}
+
+message CheckVersionResponse {
+  bool need_update = 1; 
+  string update_url = 2; 
+}
+
+message HasPasswordRequest {
+  string login = 1; 
+  int32  app_id = 2;
+}
+
+message HasPasswordResponse {
+  bool has_password = 1; 
+}
+
+message ChangePasswordRequest {
+  string login = 1; 
+  string old_password = 2; 
+  string new_password = 3;
+  int32  app_id = 4;
+}
+
+message ChangePasswordResponse {
+  bool success = 1; 
+}
+
+message SetPasswordRequest {
+  string login = 1; 
+  string password = 2;
+  int32  app_id = 3;
+}
+
+message SetPasswordResponse {
+  bool success = 1; 
+}
+
+message ResetPasswordRequest {
+  string login = 1; 
+  int32  app_id = 2;
+}
+
+message ResetPasswordResponse {
+  bool success = 1; 
+}
+
+message SignOutRequest {
+  string access_token = 1; 
+  int32  app_id = 2;
+}
+
+message SignOutResponse {
+  bool success = 1; 
 }
 
 message SignUpRequest {
@@ -75,3 +139,5 @@ message SignInResponse {
   string access_token = 1; 
   string refresh_token = 2; 
 }
+
+

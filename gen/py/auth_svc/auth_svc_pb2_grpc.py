@@ -44,6 +44,36 @@ class AuthStub(object):
                 request_serializer=auth__svc_dot_auth__svc__pb2.TakePinRequest.SerializeToString,
                 response_deserializer=auth__svc_dot_auth__svc__pb2.TakePinResponse.FromString,
                 )
+        self.SignOut = channel.unary_unary(
+                '/auth.Auth/SignOut',
+                request_serializer=auth__svc_dot_auth__svc__pb2.SignOutRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.SignOutResponse.FromString,
+                )
+        self.HasPassword = channel.unary_unary(
+                '/auth.Auth/HasPassword',
+                request_serializer=auth__svc_dot_auth__svc__pb2.HasPasswordRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.HasPasswordResponse.FromString,
+                )
+        self.ResetPassword = channel.unary_unary(
+                '/auth.Auth/ResetPassword',
+                request_serializer=auth__svc_dot_auth__svc__pb2.ResetPasswordRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.ResetPasswordResponse.FromString,
+                )
+        self.SetPassword = channel.unary_unary(
+                '/auth.Auth/SetPassword',
+                request_serializer=auth__svc_dot_auth__svc__pb2.SetPasswordRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.SetPasswordResponse.FromString,
+                )
+        self.ChangePassword = channel.unary_unary(
+                '/auth.Auth/ChangePassword',
+                request_serializer=auth__svc_dot_auth__svc__pb2.ChangePasswordRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.ChangePasswordResponse.FromString,
+                )
+        self.CheckVersion = channel.unary_unary(
+                '/auth.Auth/CheckVersion',
+                request_serializer=auth__svc_dot_auth__svc__pb2.CheckVersionRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.CheckVersionResponse.FromString,
+                )
 
 
 class AuthServicer(object):
@@ -85,6 +115,42 @@ class AuthServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SignOut(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def HasPassword(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ResetPassword(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SetPassword(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ChangePassword(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CheckVersion(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_AuthServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -117,6 +183,36 @@ def add_AuthServicer_to_server(servicer, server):
                     servicer.TakePin,
                     request_deserializer=auth__svc_dot_auth__svc__pb2.TakePinRequest.FromString,
                     response_serializer=auth__svc_dot_auth__svc__pb2.TakePinResponse.SerializeToString,
+            ),
+            'SignOut': grpc.unary_unary_rpc_method_handler(
+                    servicer.SignOut,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.SignOutRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.SignOutResponse.SerializeToString,
+            ),
+            'HasPassword': grpc.unary_unary_rpc_method_handler(
+                    servicer.HasPassword,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.HasPasswordRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.HasPasswordResponse.SerializeToString,
+            ),
+            'ResetPassword': grpc.unary_unary_rpc_method_handler(
+                    servicer.ResetPassword,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.ResetPasswordRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.ResetPasswordResponse.SerializeToString,
+            ),
+            'SetPassword': grpc.unary_unary_rpc_method_handler(
+                    servicer.SetPassword,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.SetPasswordRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.SetPasswordResponse.SerializeToString,
+            ),
+            'ChangePassword': grpc.unary_unary_rpc_method_handler(
+                    servicer.ChangePassword,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.ChangePasswordRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.ChangePasswordResponse.SerializeToString,
+            ),
+            'CheckVersion': grpc.unary_unary_rpc_method_handler(
+                    servicer.CheckVersion,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.CheckVersionRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.CheckVersionResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -227,5 +323,107 @@ class Auth(object):
         return grpc.experimental.unary_unary(request, target, '/auth.Auth/TakePin',
             auth__svc_dot_auth__svc__pb2.TakePinRequest.SerializeToString,
             auth__svc_dot_auth__svc__pb2.TakePinResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SignOut(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/SignOut',
+            auth__svc_dot_auth__svc__pb2.SignOutRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.SignOutResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def HasPassword(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/HasPassword',
+            auth__svc_dot_auth__svc__pb2.HasPasswordRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.HasPasswordResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ResetPassword(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/ResetPassword',
+            auth__svc_dot_auth__svc__pb2.ResetPasswordRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.ResetPasswordResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SetPassword(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/SetPassword',
+            auth__svc_dot_auth__svc__pb2.SetPasswordRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.SetPasswordResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ChangePassword(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/ChangePassword',
+            auth__svc_dot_auth__svc__pb2.ChangePasswordRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.ChangePasswordResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CheckVersion(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/CheckVersion',
+            auth__svc_dot_auth__svc__pb2.CheckVersionRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.CheckVersionResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
