@@ -5,12 +5,14 @@ from typing import ClassVar as _ClassVar, Optional as _Optional
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class CheckVersionRequest(_message.Message):
-    __slots__ = ("version", "app_id")
+    __slots__ = ("version", "app_id", "access_token")
     VERSION_FIELD_NUMBER: _ClassVar[int]
     APP_ID_FIELD_NUMBER: _ClassVar[int]
+    ACCESS_TOKEN_FIELD_NUMBER: _ClassVar[int]
     version: str
     app_id: int
-    def __init__(self, version: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
+    access_token: str
+    def __init__(self, version: _Optional[str] = ..., app_id: _Optional[int] = ..., access_token: _Optional[str] = ...) -> None: ...
 
 class CheckVersionResponse(_message.Message):
     __slots__ = ("need_update", "update_url")
