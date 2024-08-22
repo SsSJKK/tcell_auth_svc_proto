@@ -1,8 +1,99 @@
+from google.protobuf.internal import containers as _containers
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
-from typing import ClassVar as _ClassVar, Optional as _Optional
+from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Mapping, Optional as _Optional, Union as _Union
 
 DESCRIPTOR: _descriptor.FileDescriptor
+
+class AddCustomerToGroupRequest(_message.Message):
+    __slots__ = ("app_id", "customer_id", "group_id")
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    CUSTOMER_ID_FIELD_NUMBER: _ClassVar[int]
+    GROUP_ID_FIELD_NUMBER: _ClassVar[int]
+    app_id: int
+    customer_id: int
+    group_id: int
+    def __init__(self, app_id: _Optional[int] = ..., customer_id: _Optional[int] = ..., group_id: _Optional[int] = ...) -> None: ...
+
+class AddCustomerToGroupResponse(_message.Message):
+    __slots__ = ("success",)
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    success: bool
+    def __init__(self, success: bool = ...) -> None: ...
+
+class GetGroupRequest(_message.Message):
+    __slots__ = ("app_id",)
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    app_id: int
+    def __init__(self, app_id: _Optional[int] = ...) -> None: ...
+
+class GetGroupResponse(_message.Message):
+    __slots__ = ("groups",)
+    GROUPS_FIELD_NUMBER: _ClassVar[int]
+    groups: _containers.RepeatedCompositeFieldContainer[Group]
+    def __init__(self, groups: _Optional[_Iterable[_Union[Group, _Mapping]]] = ...) -> None: ...
+
+class AddGroupRequest(_message.Message):
+    __slots__ = ("app_id", "name")
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    app_id: int
+    name: str
+    def __init__(self, app_id: _Optional[int] = ..., name: _Optional[str] = ...) -> None: ...
+
+class AddGroupResponse(_message.Message):
+    __slots__ = ("success",)
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    success: bool
+    def __init__(self, success: bool = ...) -> None: ...
+
+class GetActionRequest(_message.Message):
+    __slots__ = ("app_id",)
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    app_id: int
+    def __init__(self, app_id: _Optional[int] = ...) -> None: ...
+
+class GetActionResponse(_message.Message):
+    __slots__ = ("actions",)
+    ACTIONS_FIELD_NUMBER: _ClassVar[int]
+    actions: _containers.RepeatedCompositeFieldContainer[Action]
+    def __init__(self, actions: _Optional[_Iterable[_Union[Action, _Mapping]]] = ...) -> None: ...
+
+class AddPermissionCustomerRequest(_message.Message):
+    __slots__ = ("app_id", "customer_id", "action_id", "space")
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    CUSTOMER_ID_FIELD_NUMBER: _ClassVar[int]
+    ACTION_ID_FIELD_NUMBER: _ClassVar[int]
+    SPACE_FIELD_NUMBER: _ClassVar[int]
+    app_id: int
+    customer_id: int
+    action_id: int
+    space: str
+    def __init__(self, app_id: _Optional[int] = ..., customer_id: _Optional[int] = ..., action_id: _Optional[int] = ..., space: _Optional[str] = ...) -> None: ...
+
+class AddPermissionCustomerResponse(_message.Message):
+    __slots__ = ("success",)
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    success: bool
+    def __init__(self, success: bool = ...) -> None: ...
+
+class AddPermissionGroupRequest(_message.Message):
+    __slots__ = ("app_id", "group_id", "action_id", "space")
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    GROUP_ID_FIELD_NUMBER: _ClassVar[int]
+    ACTION_ID_FIELD_NUMBER: _ClassVar[int]
+    SPACE_FIELD_NUMBER: _ClassVar[int]
+    app_id: int
+    group_id: int
+    action_id: int
+    space: str
+    def __init__(self, app_id: _Optional[int] = ..., group_id: _Optional[int] = ..., action_id: _Optional[int] = ..., space: _Optional[str] = ...) -> None: ...
+
+class AddPermissionGroupResponse(_message.Message):
+    __slots__ = ("success",)
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    success: bool
+    def __init__(self, success: bool = ...) -> None: ...
 
 class CheckVersionRequest(_message.Message):
     __slots__ = ("version", "app_id", "access_token")
@@ -213,3 +304,91 @@ class SignInResponse(_message.Message):
     access_token: str
     refresh_token: str
     def __init__(self, access_token: _Optional[str] = ..., refresh_token: _Optional[str] = ...) -> None: ...
+
+class Group(_message.Message):
+    __slots__ = ("id", "name", "app_id")
+    ID_FIELD_NUMBER: _ClassVar[int]
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    id: int
+    name: str
+    app_id: int
+    def __init__(self, id: _Optional[int] = ..., name: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
+
+class Customer(_message.Message):
+    __slots__ = ("id", "login", "password", "app_id", "phone_number", "email")
+    ID_FIELD_NUMBER: _ClassVar[int]
+    LOGIN_FIELD_NUMBER: _ClassVar[int]
+    PASSWORD_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    PHONE_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    EMAIL_FIELD_NUMBER: _ClassVar[int]
+    id: int
+    login: str
+    password: str
+    app_id: int
+    phone_number: str
+    email: str
+    def __init__(self, id: _Optional[int] = ..., login: _Optional[str] = ..., password: _Optional[str] = ..., app_id: _Optional[int] = ..., phone_number: _Optional[str] = ..., email: _Optional[str] = ...) -> None: ...
+
+class Action(_message.Message):
+    __slots__ = ("id", "action", "name")
+    ID_FIELD_NUMBER: _ClassVar[int]
+    ACTION_FIELD_NUMBER: _ClassVar[int]
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    id: int
+    action: str
+    name: str
+    def __init__(self, id: _Optional[int] = ..., action: _Optional[str] = ..., name: _Optional[str] = ...) -> None: ...
+
+class PermissionsGroup(_message.Message):
+    __slots__ = ("id", "app_id", "group_id", "action_id", "action", "space")
+    ID_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    GROUP_ID_FIELD_NUMBER: _ClassVar[int]
+    ACTION_ID_FIELD_NUMBER: _ClassVar[int]
+    ACTION_FIELD_NUMBER: _ClassVar[int]
+    SPACE_FIELD_NUMBER: _ClassVar[int]
+    id: int
+    app_id: int
+    group_id: int
+    action_id: int
+    action: Action
+    space: str
+    def __init__(self, id: _Optional[int] = ..., app_id: _Optional[int] = ..., group_id: _Optional[int] = ..., action_id: _Optional[int] = ..., action: _Optional[_Union[Action, _Mapping]] = ..., space: _Optional[str] = ...) -> None: ...
+
+class PermissionsCustomer(_message.Message):
+    __slots__ = ("id", "app_id", "customer_id", "action_id", "action", "space")
+    ID_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    CUSTOMER_ID_FIELD_NUMBER: _ClassVar[int]
+    ACTION_ID_FIELD_NUMBER: _ClassVar[int]
+    ACTION_FIELD_NUMBER: _ClassVar[int]
+    SPACE_FIELD_NUMBER: _ClassVar[int]
+    id: int
+    app_id: int
+    customer_id: int
+    action_id: int
+    action: Action
+    space: str
+    def __init__(self, id: _Optional[int] = ..., app_id: _Optional[int] = ..., customer_id: _Optional[int] = ..., action_id: _Optional[int] = ..., action: _Optional[_Union[Action, _Mapping]] = ..., space: _Optional[str] = ...) -> None: ...
+
+class CustomerInfoResponse(_message.Message):
+    __slots__ = ("customer", "group_ids", "permissions_customers", "permissions_groups")
+    CUSTOMER_FIELD_NUMBER: _ClassVar[int]
+    GROUP_IDS_FIELD_NUMBER: _ClassVar[int]
+    PERMISSIONS_CUSTOMERS_FIELD_NUMBER: _ClassVar[int]
+    PERMISSIONS_GROUPS_FIELD_NUMBER: _ClassVar[int]
+    customer: Customer
+    group_ids: _containers.RepeatedScalarFieldContainer[int]
+    permissions_customers: _containers.RepeatedCompositeFieldContainer[PermissionsCustomer]
+    permissions_groups: _containers.RepeatedCompositeFieldContainer[PermissionsGroup]
+    def __init__(self, customer: _Optional[_Union[Customer, _Mapping]] = ..., group_ids: _Optional[_Iterable[int]] = ..., permissions_customers: _Optional[_Iterable[_Union[PermissionsCustomer, _Mapping]]] = ..., permissions_groups: _Optional[_Iterable[_Union[PermissionsGroup, _Mapping]]] = ...) -> None: ...
+
+class CustomerInfoRequest(_message.Message):
+    __slots__ = ("access_token", "app_id")
+    ACCESS_TOKEN_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    access_token: str
+    app_id: int
+    def __init__(self, access_token: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...

@@ -19,18 +19,25 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Auth_SignUp_FullMethodName         = "/auth.Auth/SignUp"
-	Auth_SignIn_FullMethodName         = "/auth.Auth/SignIn"
-	Auth_RefreshToken_FullMethodName   = "/auth.Auth/RefreshToken"
-	Auth_CheckToken_FullMethodName     = "/auth.Auth/CheckToken"
-	Auth_CheckPermisson_FullMethodName = "/auth.Auth/CheckPermisson"
-	Auth_TakePin_FullMethodName        = "/auth.Auth/TakePin"
-	Auth_SignOut_FullMethodName        = "/auth.Auth/SignOut"
-	Auth_HasPassword_FullMethodName    = "/auth.Auth/HasPassword"
-	Auth_ResetPassword_FullMethodName  = "/auth.Auth/ResetPassword"
-	Auth_SetPassword_FullMethodName    = "/auth.Auth/SetPassword"
-	Auth_ChangePassword_FullMethodName = "/auth.Auth/ChangePassword"
-	Auth_CheckVersion_FullMethodName   = "/auth.Auth/CheckVersion"
+	Auth_SignUp_FullMethodName                = "/auth.Auth/SignUp"
+	Auth_SignIn_FullMethodName                = "/auth.Auth/SignIn"
+	Auth_RefreshToken_FullMethodName          = "/auth.Auth/RefreshToken"
+	Auth_CheckToken_FullMethodName            = "/auth.Auth/CheckToken"
+	Auth_CheckPermisson_FullMethodName        = "/auth.Auth/CheckPermisson"
+	Auth_TakePin_FullMethodName               = "/auth.Auth/TakePin"
+	Auth_SignOut_FullMethodName               = "/auth.Auth/SignOut"
+	Auth_HasPassword_FullMethodName           = "/auth.Auth/HasPassword"
+	Auth_ResetPassword_FullMethodName         = "/auth.Auth/ResetPassword"
+	Auth_SetPassword_FullMethodName           = "/auth.Auth/SetPassword"
+	Auth_ChangePassword_FullMethodName        = "/auth.Auth/ChangePassword"
+	Auth_CheckVersion_FullMethodName          = "/auth.Auth/CheckVersion"
+	Auth_CustomerInfo_FullMethodName          = "/auth.Auth/CustomerInfo"
+	Auth_GetAction_FullMethodName             = "/auth.Auth/GetAction"
+	Auth_AddPermissionCustomer_FullMethodName = "/auth.Auth/AddPermissionCustomer"
+	Auth_AddPermissionGroup_FullMethodName    = "/auth.Auth/AddPermissionGroup"
+	Auth_GetGroup_FullMethodName              = "/auth.Auth/GetGroup"
+	Auth_AddGroup_FullMethodName              = "/auth.Auth/AddGroup"
+	Auth_AddCustomerToGroup_FullMethodName    = "/auth.Auth/AddCustomerToGroup"
 )
 
 // AuthClient is the client API for Auth service.
@@ -49,6 +56,13 @@ type AuthClient interface {
 	SetPassword(ctx context.Context, in *SetPasswordRequest, opts ...grpc.CallOption) (*SetPasswordResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
 	CheckVersion(ctx context.Context, in *CheckVersionRequest, opts ...grpc.CallOption) (*CheckVersionResponse, error)
+	CustomerInfo(ctx context.Context, in *CheckVersionRequest, opts ...grpc.CallOption) (*CustomerInfoResponse, error)
+	GetAction(ctx context.Context, in *GetActionRequest, opts ...grpc.CallOption) (*GetActionResponse, error)
+	AddPermissionCustomer(ctx context.Context, in *AddPermissionCustomerRequest, opts ...grpc.CallOption) (*AddPermissionCustomerResponse, error)
+	AddPermissionGroup(ctx context.Context, in *AddPermissionGroupRequest, opts ...grpc.CallOption) (*AddPermissionGroupResponse, error)
+	GetGroup(ctx context.Context, in *GetGroupRequest, opts ...grpc.CallOption) (*GetGroupResponse, error)
+	AddGroup(ctx context.Context, in *AddGroupRequest, opts ...grpc.CallOption) (*AddGroupResponse, error)
+	AddCustomerToGroup(ctx context.Context, in *AddCustomerToGroupRequest, opts ...grpc.CallOption) (*AddCustomerToGroupResponse, error)
 }
 
 type authClient struct {
@@ -167,6 +181,69 @@ func (c *authClient) CheckVersion(ctx context.Context, in *CheckVersionRequest, 
 	return out, nil
 }
 
+func (c *authClient) CustomerInfo(ctx context.Context, in *CheckVersionRequest, opts ...grpc.CallOption) (*CustomerInfoResponse, error) {
+	out := new(CustomerInfoResponse)
+	err := c.cc.Invoke(ctx, Auth_CustomerInfo_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) GetAction(ctx context.Context, in *GetActionRequest, opts ...grpc.CallOption) (*GetActionResponse, error) {
+	out := new(GetActionResponse)
+	err := c.cc.Invoke(ctx, Auth_GetAction_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) AddPermissionCustomer(ctx context.Context, in *AddPermissionCustomerRequest, opts ...grpc.CallOption) (*AddPermissionCustomerResponse, error) {
+	out := new(AddPermissionCustomerResponse)
+	err := c.cc.Invoke(ctx, Auth_AddPermissionCustomer_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) AddPermissionGroup(ctx context.Context, in *AddPermissionGroupRequest, opts ...grpc.CallOption) (*AddPermissionGroupResponse, error) {
+	out := new(AddPermissionGroupResponse)
+	err := c.cc.Invoke(ctx, Auth_AddPermissionGroup_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) GetGroup(ctx context.Context, in *GetGroupRequest, opts ...grpc.CallOption) (*GetGroupResponse, error) {
+	out := new(GetGroupResponse)
+	err := c.cc.Invoke(ctx, Auth_GetGroup_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) AddGroup(ctx context.Context, in *AddGroupRequest, opts ...grpc.CallOption) (*AddGroupResponse, error) {
+	out := new(AddGroupResponse)
+	err := c.cc.Invoke(ctx, Auth_AddGroup_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) AddCustomerToGroup(ctx context.Context, in *AddCustomerToGroupRequest, opts ...grpc.CallOption) (*AddCustomerToGroupResponse, error) {
+	out := new(AddCustomerToGroupResponse)
+	err := c.cc.Invoke(ctx, Auth_AddCustomerToGroup_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServer is the server API for Auth service.
 // All implementations must embed UnimplementedAuthServer
 // for forward compatibility
@@ -183,6 +260,13 @@ type AuthServer interface {
 	SetPassword(context.Context, *SetPasswordRequest) (*SetPasswordResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
 	CheckVersion(context.Context, *CheckVersionRequest) (*CheckVersionResponse, error)
+	CustomerInfo(context.Context, *CheckVersionRequest) (*CustomerInfoResponse, error)
+	GetAction(context.Context, *GetActionRequest) (*GetActionResponse, error)
+	AddPermissionCustomer(context.Context, *AddPermissionCustomerRequest) (*AddPermissionCustomerResponse, error)
+	AddPermissionGroup(context.Context, *AddPermissionGroupRequest) (*AddPermissionGroupResponse, error)
+	GetGroup(context.Context, *GetGroupRequest) (*GetGroupResponse, error)
+	AddGroup(context.Context, *AddGroupRequest) (*AddGroupResponse, error)
+	AddCustomerToGroup(context.Context, *AddCustomerToGroupRequest) (*AddCustomerToGroupResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -225,6 +309,27 @@ func (UnimplementedAuthServer) ChangePassword(context.Context, *ChangePasswordRe
 }
 func (UnimplementedAuthServer) CheckVersion(context.Context, *CheckVersionRequest) (*CheckVersionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckVersion not implemented")
+}
+func (UnimplementedAuthServer) CustomerInfo(context.Context, *CheckVersionRequest) (*CustomerInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CustomerInfo not implemented")
+}
+func (UnimplementedAuthServer) GetAction(context.Context, *GetActionRequest) (*GetActionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAction not implemented")
+}
+func (UnimplementedAuthServer) AddPermissionCustomer(context.Context, *AddPermissionCustomerRequest) (*AddPermissionCustomerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddPermissionCustomer not implemented")
+}
+func (UnimplementedAuthServer) AddPermissionGroup(context.Context, *AddPermissionGroupRequest) (*AddPermissionGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddPermissionGroup not implemented")
+}
+func (UnimplementedAuthServer) GetGroup(context.Context, *GetGroupRequest) (*GetGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGroup not implemented")
+}
+func (UnimplementedAuthServer) AddGroup(context.Context, *AddGroupRequest) (*AddGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddGroup not implemented")
+}
+func (UnimplementedAuthServer) AddCustomerToGroup(context.Context, *AddCustomerToGroupRequest) (*AddCustomerToGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCustomerToGroup not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 
@@ -455,6 +560,132 @@ func _Auth_CheckVersion_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_CustomerInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).CustomerInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_CustomerInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).CustomerInfo(ctx, req.(*CheckVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_GetAction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetActionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).GetAction(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_GetAction_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).GetAction(ctx, req.(*GetActionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_AddPermissionCustomer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddPermissionCustomerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).AddPermissionCustomer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_AddPermissionCustomer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).AddPermissionCustomer(ctx, req.(*AddPermissionCustomerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_AddPermissionGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddPermissionGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).AddPermissionGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_AddPermissionGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).AddPermissionGroup(ctx, req.(*AddPermissionGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_GetGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).GetGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_GetGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).GetGroup(ctx, req.(*GetGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_AddGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).AddGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_AddGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).AddGroup(ctx, req.(*AddGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_AddCustomerToGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddCustomerToGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).AddCustomerToGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_AddCustomerToGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).AddCustomerToGroup(ctx, req.(*AddCustomerToGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -509,6 +740,34 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckVersion",
 			Handler:    _Auth_CheckVersion_Handler,
+		},
+		{
+			MethodName: "CustomerInfo",
+			Handler:    _Auth_CustomerInfo_Handler,
+		},
+		{
+			MethodName: "GetAction",
+			Handler:    _Auth_GetAction_Handler,
+		},
+		{
+			MethodName: "AddPermissionCustomer",
+			Handler:    _Auth_AddPermissionCustomer_Handler,
+		},
+		{
+			MethodName: "AddPermissionGroup",
+			Handler:    _Auth_AddPermissionGroup_Handler,
+		},
+		{
+			MethodName: "GetGroup",
+			Handler:    _Auth_GetGroup_Handler,
+		},
+		{
+			MethodName: "AddGroup",
+			Handler:    _Auth_AddGroup_Handler,
+		},
+		{
+			MethodName: "AddCustomerToGroup",
+			Handler:    _Auth_AddCustomerToGroup_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

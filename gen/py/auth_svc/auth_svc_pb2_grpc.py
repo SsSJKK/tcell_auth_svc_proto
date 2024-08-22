@@ -74,6 +74,41 @@ class AuthStub(object):
                 request_serializer=auth__svc_dot_auth__svc__pb2.CheckVersionRequest.SerializeToString,
                 response_deserializer=auth__svc_dot_auth__svc__pb2.CheckVersionResponse.FromString,
                 )
+        self.CustomerInfo = channel.unary_unary(
+                '/auth.Auth/CustomerInfo',
+                request_serializer=auth__svc_dot_auth__svc__pb2.CheckVersionRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.CustomerInfoResponse.FromString,
+                )
+        self.GetAction = channel.unary_unary(
+                '/auth.Auth/GetAction',
+                request_serializer=auth__svc_dot_auth__svc__pb2.GetActionRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.GetActionResponse.FromString,
+                )
+        self.AddPermissionCustomer = channel.unary_unary(
+                '/auth.Auth/AddPermissionCustomer',
+                request_serializer=auth__svc_dot_auth__svc__pb2.AddPermissionCustomerRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.AddPermissionCustomerResponse.FromString,
+                )
+        self.AddPermissionGroup = channel.unary_unary(
+                '/auth.Auth/AddPermissionGroup',
+                request_serializer=auth__svc_dot_auth__svc__pb2.AddPermissionGroupRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.AddPermissionGroupResponse.FromString,
+                )
+        self.GetGroup = channel.unary_unary(
+                '/auth.Auth/GetGroup',
+                request_serializer=auth__svc_dot_auth__svc__pb2.GetGroupRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.GetGroupResponse.FromString,
+                )
+        self.AddGroup = channel.unary_unary(
+                '/auth.Auth/AddGroup',
+                request_serializer=auth__svc_dot_auth__svc__pb2.AddGroupRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.AddGroupResponse.FromString,
+                )
+        self.AddCustomerToGroup = channel.unary_unary(
+                '/auth.Auth/AddCustomerToGroup',
+                request_serializer=auth__svc_dot_auth__svc__pb2.AddCustomerToGroupRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.AddCustomerToGroupResponse.FromString,
+                )
 
 
 class AuthServicer(object):
@@ -151,6 +186,48 @@ class AuthServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CustomerInfo(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetAction(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddPermissionCustomer(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddPermissionGroup(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetGroup(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddGroup(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddCustomerToGroup(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_AuthServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -213,6 +290,41 @@ def add_AuthServicer_to_server(servicer, server):
                     servicer.CheckVersion,
                     request_deserializer=auth__svc_dot_auth__svc__pb2.CheckVersionRequest.FromString,
                     response_serializer=auth__svc_dot_auth__svc__pb2.CheckVersionResponse.SerializeToString,
+            ),
+            'CustomerInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.CustomerInfo,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.CheckVersionRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.CustomerInfoResponse.SerializeToString,
+            ),
+            'GetAction': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAction,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.GetActionRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.GetActionResponse.SerializeToString,
+            ),
+            'AddPermissionCustomer': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddPermissionCustomer,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.AddPermissionCustomerRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.AddPermissionCustomerResponse.SerializeToString,
+            ),
+            'AddPermissionGroup': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddPermissionGroup,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.AddPermissionGroupRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.AddPermissionGroupResponse.SerializeToString,
+            ),
+            'GetGroup': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetGroup,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.GetGroupRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.GetGroupResponse.SerializeToString,
+            ),
+            'AddGroup': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddGroup,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.AddGroupRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.AddGroupResponse.SerializeToString,
+            ),
+            'AddCustomerToGroup': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddCustomerToGroup,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.AddCustomerToGroupRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.AddCustomerToGroupResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -425,5 +537,124 @@ class Auth(object):
         return grpc.experimental.unary_unary(request, target, '/auth.Auth/CheckVersion',
             auth__svc_dot_auth__svc__pb2.CheckVersionRequest.SerializeToString,
             auth__svc_dot_auth__svc__pb2.CheckVersionResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CustomerInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/CustomerInfo',
+            auth__svc_dot_auth__svc__pb2.CheckVersionRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.CustomerInfoResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAction(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/GetAction',
+            auth__svc_dot_auth__svc__pb2.GetActionRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.GetActionResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddPermissionCustomer(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/AddPermissionCustomer',
+            auth__svc_dot_auth__svc__pb2.AddPermissionCustomerRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.AddPermissionCustomerResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddPermissionGroup(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/AddPermissionGroup',
+            auth__svc_dot_auth__svc__pb2.AddPermissionGroupRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.AddPermissionGroupResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetGroup(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/GetGroup',
+            auth__svc_dot_auth__svc__pb2.GetGroupRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.GetGroupResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddGroup(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/AddGroup',
+            auth__svc_dot_auth__svc__pb2.AddGroupRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.AddGroupResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddCustomerToGroup(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/AddCustomerToGroup',
+            auth__svc_dot_auth__svc__pb2.AddCustomerToGroupRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.AddCustomerToGroupResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

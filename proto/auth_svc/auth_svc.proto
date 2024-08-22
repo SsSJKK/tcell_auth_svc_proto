@@ -17,8 +17,75 @@ service Auth {
   rpc SetPassword (SetPasswordRequest) returns (SetPasswordResponse);
   rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
   rpc CheckVersion (CheckVersionRequest) returns (CheckVersionResponse);
+  rpc CustomerInfo (CheckVersionRequest) returns (CustomerInfoResponse);
+  rpc GetAction (GetActionRequest) returns (GetActionResponse);
+  rpc AddPermissionCustomer (
+    AddPermissionCustomerRequest) returns (AddPermissionCustomerResponse);
+  rpc AddPermissionGroup (
+    AddPermissionGroupRequest) returns (AddPermissionGroupResponse);
+  rpc GetGroup (GetGroupRequest) returns (GetGroupResponse);
+  rpc AddGroup (AddGroupRequest) returns (AddGroupResponse);
+  rpc AddCustomerToGroup (
+    AddCustomerToGroupRequest) returns (AddCustomerToGroupResponse);
 }
 
+message AddCustomerToGroupRequest {
+  int32  app_id = 1;
+  int32  customer_id = 2;
+  int32  group_id = 3;
+}
+
+message AddCustomerToGroupResponse {
+  bool success = 1;
+}
+
+
+message GetGroupRequest {
+  int32  app_id = 1;
+}
+
+message GetGroupResponse {
+  repeated Group groups = 1;
+}
+
+message AddGroupRequest {
+  int32  app_id = 1;
+  string name = 2;
+}
+
+message AddGroupResponse {
+  bool success = 1;
+}
+
+message GetActionRequest {
+  int32  app_id = 1;
+}
+
+message GetActionResponse {
+  repeated Action actions = 1;
+}
+
+message AddPermissionCustomerRequest {
+  int32  app_id = 1;
+  int32  customer_id = 2;
+  int32  action_id = 3;
+  string space = 4;
+}
+
+message AddPermissionCustomerResponse {
+  bool success = 1;
+}
+
+message AddPermissionGroupRequest {
+  int32  app_id = 1;
+  int32  group_id = 2;
+  int32  action_id = 3;
+  string space = 4;
+}
+
+message AddPermissionGroupResponse {
+  bool success = 1;
+}
 
 message CheckVersionRequest {
   string version = 1; 
@@ -142,4 +209,56 @@ message SignInResponse {
   string refresh_token = 2; 
 }
 
+message Group {
+  uint32 id = 1;
+  string name = 2;
+  uint32 app_id = 3;
+}
+
+
+message Customer {
+  uint32 id = 1;
+  string login = 2;
+  string password = 3;
+  uint32 app_id = 4;
+  string phone_number = 5;
+  string email = 6;
+}
+
+message Action {
+  uint32 id = 1;
+  string action = 2;
+  string name = 3;
+}
+
+message PermissionsGroup {
+  uint32 id = 1;
+  uint32 app_id = 2;
+  uint32 group_id = 3;
+  uint32 action_id = 4;
+  Action action = 5;
+  string space = 6;
+}
+
+message PermissionsCustomer {
+  uint32 id = 1;
+  uint32 app_id = 2;
+  uint32 customer_id = 3;
+  uint32 action_id = 4;
+  Action action = 5;
+  string space = 6;
+}
+
+message CustomerInfoResponse {
+  Customer customer = 1;
+  repeated uint32 group_ids = 2;
+  repeated PermissionsCustomer permissions_customers = 3;
+  repeated PermissionsGroup permissions_groups = 4;
+}
+
+
+message CustomerInfoRequest {
+  string access_token = 1; 
+  int32  app_id = 2;
+}
 
