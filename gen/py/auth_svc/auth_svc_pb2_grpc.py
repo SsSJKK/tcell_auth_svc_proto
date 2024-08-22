@@ -76,7 +76,7 @@ class AuthStub(object):
                 )
         self.CustomerInfo = channel.unary_unary(
                 '/auth.Auth/CustomerInfo',
-                request_serializer=auth__svc_dot_auth__svc__pb2.CheckVersionRequest.SerializeToString,
+                request_serializer=auth__svc_dot_auth__svc__pb2.CustomerInfoRequest.SerializeToString,
                 response_deserializer=auth__svc_dot_auth__svc__pb2.CustomerInfoResponse.FromString,
                 )
         self.GetAction = channel.unary_unary(
@@ -293,7 +293,7 @@ def add_AuthServicer_to_server(servicer, server):
             ),
             'CustomerInfo': grpc.unary_unary_rpc_method_handler(
                     servicer.CustomerInfo,
-                    request_deserializer=auth__svc_dot_auth__svc__pb2.CheckVersionRequest.FromString,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.CustomerInfoRequest.FromString,
                     response_serializer=auth__svc_dot_auth__svc__pb2.CustomerInfoResponse.SerializeToString,
             ),
             'GetAction': grpc.unary_unary_rpc_method_handler(
@@ -552,7 +552,7 @@ class Auth(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/auth.Auth/CustomerInfo',
-            auth__svc_dot_auth__svc__pb2.CheckVersionRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.CustomerInfoRequest.SerializeToString,
             auth__svc_dot_auth__svc__pb2.CustomerInfoResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

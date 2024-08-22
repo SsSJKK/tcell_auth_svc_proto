@@ -56,7 +56,7 @@ type AuthClient interface {
 	SetPassword(ctx context.Context, in *SetPasswordRequest, opts ...grpc.CallOption) (*SetPasswordResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
 	CheckVersion(ctx context.Context, in *CheckVersionRequest, opts ...grpc.CallOption) (*CheckVersionResponse, error)
-	CustomerInfo(ctx context.Context, in *CheckVersionRequest, opts ...grpc.CallOption) (*CustomerInfoResponse, error)
+	CustomerInfo(ctx context.Context, in *CustomerInfoRequest, opts ...grpc.CallOption) (*CustomerInfoResponse, error)
 	GetAction(ctx context.Context, in *GetActionRequest, opts ...grpc.CallOption) (*GetActionResponse, error)
 	AddPermissionCustomer(ctx context.Context, in *AddPermissionCustomerRequest, opts ...grpc.CallOption) (*AddPermissionCustomerResponse, error)
 	AddPermissionGroup(ctx context.Context, in *AddPermissionGroupRequest, opts ...grpc.CallOption) (*AddPermissionGroupResponse, error)
@@ -181,7 +181,7 @@ func (c *authClient) CheckVersion(ctx context.Context, in *CheckVersionRequest, 
 	return out, nil
 }
 
-func (c *authClient) CustomerInfo(ctx context.Context, in *CheckVersionRequest, opts ...grpc.CallOption) (*CustomerInfoResponse, error) {
+func (c *authClient) CustomerInfo(ctx context.Context, in *CustomerInfoRequest, opts ...grpc.CallOption) (*CustomerInfoResponse, error) {
 	out := new(CustomerInfoResponse)
 	err := c.cc.Invoke(ctx, Auth_CustomerInfo_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -260,7 +260,7 @@ type AuthServer interface {
 	SetPassword(context.Context, *SetPasswordRequest) (*SetPasswordResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
 	CheckVersion(context.Context, *CheckVersionRequest) (*CheckVersionResponse, error)
-	CustomerInfo(context.Context, *CheckVersionRequest) (*CustomerInfoResponse, error)
+	CustomerInfo(context.Context, *CustomerInfoRequest) (*CustomerInfoResponse, error)
 	GetAction(context.Context, *GetActionRequest) (*GetActionResponse, error)
 	AddPermissionCustomer(context.Context, *AddPermissionCustomerRequest) (*AddPermissionCustomerResponse, error)
 	AddPermissionGroup(context.Context, *AddPermissionGroupRequest) (*AddPermissionGroupResponse, error)
@@ -310,7 +310,7 @@ func (UnimplementedAuthServer) ChangePassword(context.Context, *ChangePasswordRe
 func (UnimplementedAuthServer) CheckVersion(context.Context, *CheckVersionRequest) (*CheckVersionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckVersion not implemented")
 }
-func (UnimplementedAuthServer) CustomerInfo(context.Context, *CheckVersionRequest) (*CustomerInfoResponse, error) {
+func (UnimplementedAuthServer) CustomerInfo(context.Context, *CustomerInfoRequest) (*CustomerInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CustomerInfo not implemented")
 }
 func (UnimplementedAuthServer) GetAction(context.Context, *GetActionRequest) (*GetActionResponse, error) {
@@ -561,7 +561,7 @@ func _Auth_CheckVersion_Handler(srv interface{}, ctx context.Context, dec func(i
 }
 
 func _Auth_CustomerInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckVersionRequest)
+	in := new(CustomerInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -573,7 +573,7 @@ func _Auth_CustomerInfo_Handler(srv interface{}, ctx context.Context, dec func(i
 		FullMethod: Auth_CustomerInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).CustomerInfo(ctx, req.(*CheckVersionRequest))
+		return srv.(AuthServer).CustomerInfo(ctx, req.(*CustomerInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

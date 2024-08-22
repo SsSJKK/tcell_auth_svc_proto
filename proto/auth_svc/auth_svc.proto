@@ -17,7 +17,7 @@ service Auth {
   rpc SetPassword (SetPasswordRequest) returns (SetPasswordResponse);
   rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
   rpc CheckVersion (CheckVersionRequest) returns (CheckVersionResponse);
-  rpc CustomerInfo (CheckVersionRequest) returns (CustomerInfoResponse);
+  rpc CustomerInfo (CustomerInfoRequest) returns (CustomerInfoResponse);
   rpc GetAction (GetActionRequest) returns (GetActionResponse);
   rpc AddPermissionCustomer (
     AddPermissionCustomerRequest) returns (AddPermissionCustomerResponse);
