@@ -109,6 +109,31 @@ class AuthStub(object):
                 request_serializer=auth__svc_dot_auth__svc__pb2.AddCustomerToGroupRequest.SerializeToString,
                 response_deserializer=auth__svc_dot_auth__svc__pb2.AddCustomerToGroupResponse.FromString,
                 )
+        self.CheckTOTP = channel.unary_unary(
+                '/auth.Auth/CheckTOTP',
+                request_serializer=auth__svc_dot_auth__svc__pb2.CheckTOTPRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.CheckTOTPResponse.FromString,
+                )
+        self.TOTPLinkAccountTmp = channel.unary_unary(
+                '/auth.Auth/TOTPLinkAccountTmp',
+                request_serializer=auth__svc_dot_auth__svc__pb2.TOTPLinkAccountTmpRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.TOTPLinkAccountTmpResponse.FromString,
+                )
+        self.TOTPLinkAccount = channel.unary_unary(
+                '/auth.Auth/TOTPLinkAccount',
+                request_serializer=auth__svc_dot_auth__svc__pb2.TOTPLinkAccountRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.TOTPLinkAccountResponse.FromString,
+                )
+        self.TOTPUnlinkAccount = channel.unary_unary(
+                '/auth.Auth/TOTPUnlinkAccount',
+                request_serializer=auth__svc_dot_auth__svc__pb2.TOTPUnlinkAccountRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.TOTPUnlinkAccountResponse.FromString,
+                )
+        self.TOTPHasLinkedAccount = channel.unary_unary(
+                '/auth.Auth/TOTPHasLinkedAccount',
+                request_serializer=auth__svc_dot_auth__svc__pb2.TOTPHasLinkedAccountRequest.SerializeToString,
+                response_deserializer=auth__svc_dot_auth__svc__pb2.TOTPHasLinkedAccountResponse.FromString,
+                )
 
 
 class AuthServicer(object):
@@ -228,6 +253,36 @@ class AuthServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CheckTOTP(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TOTPLinkAccountTmp(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TOTPLinkAccount(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TOTPUnlinkAccount(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TOTPHasLinkedAccount(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_AuthServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -325,6 +380,31 @@ def add_AuthServicer_to_server(servicer, server):
                     servicer.AddCustomerToGroup,
                     request_deserializer=auth__svc_dot_auth__svc__pb2.AddCustomerToGroupRequest.FromString,
                     response_serializer=auth__svc_dot_auth__svc__pb2.AddCustomerToGroupResponse.SerializeToString,
+            ),
+            'CheckTOTP': grpc.unary_unary_rpc_method_handler(
+                    servicer.CheckTOTP,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.CheckTOTPRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.CheckTOTPResponse.SerializeToString,
+            ),
+            'TOTPLinkAccountTmp': grpc.unary_unary_rpc_method_handler(
+                    servicer.TOTPLinkAccountTmp,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.TOTPLinkAccountTmpRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.TOTPLinkAccountTmpResponse.SerializeToString,
+            ),
+            'TOTPLinkAccount': grpc.unary_unary_rpc_method_handler(
+                    servicer.TOTPLinkAccount,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.TOTPLinkAccountRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.TOTPLinkAccountResponse.SerializeToString,
+            ),
+            'TOTPUnlinkAccount': grpc.unary_unary_rpc_method_handler(
+                    servicer.TOTPUnlinkAccount,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.TOTPUnlinkAccountRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.TOTPUnlinkAccountResponse.SerializeToString,
+            ),
+            'TOTPHasLinkedAccount': grpc.unary_unary_rpc_method_handler(
+                    servicer.TOTPHasLinkedAccount,
+                    request_deserializer=auth__svc_dot_auth__svc__pb2.TOTPHasLinkedAccountRequest.FromString,
+                    response_serializer=auth__svc_dot_auth__svc__pb2.TOTPHasLinkedAccountResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -656,5 +736,90 @@ class Auth(object):
         return grpc.experimental.unary_unary(request, target, '/auth.Auth/AddCustomerToGroup',
             auth__svc_dot_auth__svc__pb2.AddCustomerToGroupRequest.SerializeToString,
             auth__svc_dot_auth__svc__pb2.AddCustomerToGroupResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CheckTOTP(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/CheckTOTP',
+            auth__svc_dot_auth__svc__pb2.CheckTOTPRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.CheckTOTPResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TOTPLinkAccountTmp(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/TOTPLinkAccountTmp',
+            auth__svc_dot_auth__svc__pb2.TOTPLinkAccountTmpRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.TOTPLinkAccountTmpResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TOTPLinkAccount(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/TOTPLinkAccount',
+            auth__svc_dot_auth__svc__pb2.TOTPLinkAccountRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.TOTPLinkAccountResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TOTPUnlinkAccount(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/TOTPUnlinkAccount',
+            auth__svc_dot_auth__svc__pb2.TOTPUnlinkAccountRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.TOTPUnlinkAccountResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TOTPHasLinkedAccount(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/auth.Auth/TOTPHasLinkedAccount',
+            auth__svc_dot_auth__svc__pb2.TOTPHasLinkedAccountRequest.SerializeToString,
+            auth__svc_dot_auth__svc__pb2.TOTPHasLinkedAccountResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

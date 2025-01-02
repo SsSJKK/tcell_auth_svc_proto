@@ -5,6 +5,82 @@ from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Map
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
+class TOTPHasLinkedAccountRequest(_message.Message):
+    __slots__ = ("access_token", "app_id")
+    ACCESS_TOKEN_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    access_token: str
+    app_id: int
+    def __init__(self, access_token: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
+
+class TOTPHasLinkedAccountResponse(_message.Message):
+    __slots__ = ("has_linked",)
+    HAS_LINKED_FIELD_NUMBER: _ClassVar[int]
+    has_linked: bool
+    def __init__(self, has_linked: bool = ...) -> None: ...
+
+class TOTPUnlinkAccountRequest(_message.Message):
+    __slots__ = ("access_token", "code", "app_id")
+    ACCESS_TOKEN_FIELD_NUMBER: _ClassVar[int]
+    CODE_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    access_token: str
+    code: str
+    app_id: int
+    def __init__(self, access_token: _Optional[str] = ..., code: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
+
+class TOTPUnlinkAccountResponse(_message.Message):
+    __slots__ = ("success",)
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    success: bool
+    def __init__(self, success: bool = ...) -> None: ...
+
+class TOTPLinkAccountRequest(_message.Message):
+    __slots__ = ("access_token", "code", "app_id")
+    ACCESS_TOKEN_FIELD_NUMBER: _ClassVar[int]
+    CODE_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    access_token: str
+    code: str
+    app_id: int
+    def __init__(self, access_token: _Optional[str] = ..., code: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
+
+class TOTPLinkAccountResponse(_message.Message):
+    __slots__ = ("success",)
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    success: bool
+    def __init__(self, success: bool = ...) -> None: ...
+
+class TOTPLinkAccountTmpRequest(_message.Message):
+    __slots__ = ("access_token", "app_id")
+    ACCESS_TOKEN_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    access_token: str
+    app_id: int
+    def __init__(self, access_token: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
+
+class TOTPLinkAccountTmpResponse(_message.Message):
+    __slots__ = ("tmp_code",)
+    TMP_CODE_FIELD_NUMBER: _ClassVar[int]
+    tmp_code: str
+    def __init__(self, tmp_code: _Optional[str] = ...) -> None: ...
+
+class CheckTOTPRequest(_message.Message):
+    __slots__ = ("access_token", "code", "app_id")
+    ACCESS_TOKEN_FIELD_NUMBER: _ClassVar[int]
+    CODE_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    access_token: str
+    code: str
+    app_id: int
+    def __init__(self, access_token: _Optional[str] = ..., code: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
+
+class CheckTOTPResponse(_message.Message):
+    __slots__ = ("success",)
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    success: bool
+    def __init__(self, success: bool = ...) -> None: ...
+
 class AddCustomerToGroupRequest(_message.Message):
     __slots__ = ("app_id", "customer_id", "group_id")
     APP_ID_FIELD_NUMBER: _ClassVar[int]

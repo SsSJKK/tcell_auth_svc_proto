@@ -27,7 +27,62 @@ service Auth {
   rpc AddGroup (AddGroupRequest) returns (AddGroupResponse);
   rpc AddCustomerToGroup (
     AddCustomerToGroupRequest) returns (AddCustomerToGroupResponse);
+  
+  rpc CheckTOTP (CheckTOTPRequest) returns (CheckTOTPResponse);
+
+  rpc TOTPLinkAccountTmp(TOTPLinkAccountTmpRequest) returns (TOTPLinkAccountTmpResponse);
+  rpc TOTPLinkAccount(TOTPLinkAccountRequest) returns (TOTPLinkAccountResponse);
+  rpc TOTPUnlinkAccount(TOTPUnlinkAccountRequest) returns (TOTPUnlinkAccountResponse);
+  rpc TOTPHasLinkedAccount(TOTPHasLinkedAccountRequest) returns (TOTPHasLinkedAccountResponse);
 }
+
+message TOTPHasLinkedAccountRequest {
+  string access_token = 1;
+  int32 app_id = 2;
+}
+
+message TOTPHasLinkedAccountResponse {
+  bool has_linked = 1;
+}
+
+message TOTPUnlinkAccountRequest {
+  string access_token = 1;
+  string code = 2;
+  int32 app_id = 3;
+}
+
+message TOTPUnlinkAccountResponse {
+  bool success = 1;
+}
+
+message TOTPLinkAccountRequest {
+  string access_token = 1; 
+  string code = 2;
+  int32 app_id = 3;
+}
+
+message TOTPLinkAccountResponse {
+  bool success = 1;
+}
+
+message TOTPLinkAccountTmpRequest {
+  string access_token = 1; 
+  int32 app_id = 2;
+}
+
+message TOTPLinkAccountTmpResponse {
+  string tmp_code = 1;
+}
+
+message CheckTOTPRequest {
+  string access_token = 1; 
+  string code = 2;
+  int32  app_id = 3;
+}
+
+message CheckTOTPResponse {
+  bool success = 1; 
+} 
 
 message AddCustomerToGroupRequest {
   int32  app_id = 1;
