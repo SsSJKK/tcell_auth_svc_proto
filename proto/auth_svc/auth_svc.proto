@@ -30,48 +30,49 @@ service Auth {
   
   rpc CheckTOTP (CheckTOTPRequest) returns (CheckTOTPResponse);
 
-  rpc TOTPLinkAccountTmp(TOTPLinkAccountTmpRequest) returns (TOTPLinkAccountTmpResponse);
-  rpc TOTPLinkAccount(TOTPLinkAccountRequest) returns (TOTPLinkAccountResponse);
-  rpc TOTPUnlinkAccount(TOTPUnlinkAccountRequest) returns (TOTPUnlinkAccountResponse);
-  rpc TOTPHasLinkedAccount(TOTPHasLinkedAccountRequest) returns (TOTPHasLinkedAccountResponse);
+  rpc TOTPLinkAccountTmp(TOTPLinkAccTmpReq) returns (TOTPLinkAccTmpResp);
+  rpc TOTPLinkAccount(TOTPLinkAccReq) returns (TOTPLinkAccResp);
+  rpc TOTPUnlinkAccount(TOTPUnlinkAccReq) returns (TOTPUnlinkAccResp);
+  rpc TOTPHasLinkedAccount(TOTPHasLinkedAccReq) returns (TOTPHasLinkedAccResp);
 }
 
-message TOTPHasLinkedAccountRequest {
+message TOTPHasLinkedAccReq {
   string access_token = 1;
   int32 app_id = 2;
 }
 
-message TOTPHasLinkedAccountResponse {
+message TOTPHasLinkedAccResp {
   bool has_linked = 1;
 }
 
-message TOTPUnlinkAccountRequest {
+message TOTPUnlinkAccReq {
   string access_token = 1;
   string code = 2;
   int32 app_id = 3;
 }
 
-message TOTPUnlinkAccountResponse {
+message TOTPUnlinkAccResp {
   bool success = 1;
 }
 
-message TOTPLinkAccountRequest {
+message TOTPLinkAccReq {
   string access_token = 1; 
   string code = 2;
   int32 app_id = 3;
 }
 
-message TOTPLinkAccountResponse {
+message TOTPLinkAccResp {
   bool success = 1;
 }
 
-message TOTPLinkAccountTmpRequest {
+message TOTPLinkAccTmpReq {
   string access_token = 1; 
   int32 app_id = 2;
 }
 
-message TOTPLinkAccountTmpResponse {
-  string tmp_code = 1;
+message TOTPLinkAccTmpResp {
+  string secret = 1;
+  string qr_code = 2;
 }
 
 message CheckTOTPRequest {
@@ -81,7 +82,8 @@ message CheckTOTPRequest {
 }
 
 message CheckTOTPResponse {
-  bool success = 1; 
+  string access_token = 1; 
+  string refresh_token = 2; 
 } 
 
 message AddCustomerToGroupRequest {

@@ -42,10 +42,10 @@ type AuthClient interface {
 	AddGroup(ctx context.Context, in *AddGroupRequest, opts ...grpc.CallOption) (*AddGroupResponse, error)
 	AddCustomerToGroup(ctx context.Context, in *AddCustomerToGroupRequest, opts ...grpc.CallOption) (*AddCustomerToGroupResponse, error)
 	CheckTOTP(ctx context.Context, in *CheckTOTPRequest, opts ...grpc.CallOption) (*CheckTOTPResponse, error)
-	TOTPLinkAccountTmp(ctx context.Context, in *TOTPLinkAccountTmpRequest, opts ...grpc.CallOption) (*TOTPLinkAccountTmpResponse, error)
-	TOTPLinkAccount(ctx context.Context, in *TOTPLinkAccountRequest, opts ...grpc.CallOption) (*TOTPLinkAccountResponse, error)
-	TOTPUnlinkAccount(ctx context.Context, in *TOTPUnlinkAccountRequest, opts ...grpc.CallOption) (*TOTPUnlinkAccountResponse, error)
-	TOTPHasLinkedAccount(ctx context.Context, in *TOTPHasLinkedAccountRequest, opts ...grpc.CallOption) (*TOTPHasLinkedAccountResponse, error)
+	TOTPLinkAccountTmp(ctx context.Context, in *TOTPLinkAccTmpReq, opts ...grpc.CallOption) (*TOTPLinkAccTmpResp, error)
+	TOTPLinkAccount(ctx context.Context, in *TOTPLinkAccReq, opts ...grpc.CallOption) (*TOTPLinkAccResp, error)
+	TOTPUnlinkAccount(ctx context.Context, in *TOTPUnlinkAccReq, opts ...grpc.CallOption) (*TOTPUnlinkAccResp, error)
+	TOTPHasLinkedAccount(ctx context.Context, in *TOTPHasLinkedAccReq, opts ...grpc.CallOption) (*TOTPHasLinkedAccResp, error)
 }
 
 type authClient struct {
@@ -236,8 +236,8 @@ func (c *authClient) CheckTOTP(ctx context.Context, in *CheckTOTPRequest, opts .
 	return out, nil
 }
 
-func (c *authClient) TOTPLinkAccountTmp(ctx context.Context, in *TOTPLinkAccountTmpRequest, opts ...grpc.CallOption) (*TOTPLinkAccountTmpResponse, error) {
-	out := new(TOTPLinkAccountTmpResponse)
+func (c *authClient) TOTPLinkAccountTmp(ctx context.Context, in *TOTPLinkAccTmpReq, opts ...grpc.CallOption) (*TOTPLinkAccTmpResp, error) {
+	out := new(TOTPLinkAccTmpResp)
 	err := c.cc.Invoke(ctx, "/auth.Auth/TOTPLinkAccountTmp", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -245,8 +245,8 @@ func (c *authClient) TOTPLinkAccountTmp(ctx context.Context, in *TOTPLinkAccount
 	return out, nil
 }
 
-func (c *authClient) TOTPLinkAccount(ctx context.Context, in *TOTPLinkAccountRequest, opts ...grpc.CallOption) (*TOTPLinkAccountResponse, error) {
-	out := new(TOTPLinkAccountResponse)
+func (c *authClient) TOTPLinkAccount(ctx context.Context, in *TOTPLinkAccReq, opts ...grpc.CallOption) (*TOTPLinkAccResp, error) {
+	out := new(TOTPLinkAccResp)
 	err := c.cc.Invoke(ctx, "/auth.Auth/TOTPLinkAccount", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -254,8 +254,8 @@ func (c *authClient) TOTPLinkAccount(ctx context.Context, in *TOTPLinkAccountReq
 	return out, nil
 }
 
-func (c *authClient) TOTPUnlinkAccount(ctx context.Context, in *TOTPUnlinkAccountRequest, opts ...grpc.CallOption) (*TOTPUnlinkAccountResponse, error) {
-	out := new(TOTPUnlinkAccountResponse)
+func (c *authClient) TOTPUnlinkAccount(ctx context.Context, in *TOTPUnlinkAccReq, opts ...grpc.CallOption) (*TOTPUnlinkAccResp, error) {
+	out := new(TOTPUnlinkAccResp)
 	err := c.cc.Invoke(ctx, "/auth.Auth/TOTPUnlinkAccount", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -263,8 +263,8 @@ func (c *authClient) TOTPUnlinkAccount(ctx context.Context, in *TOTPUnlinkAccoun
 	return out, nil
 }
 
-func (c *authClient) TOTPHasLinkedAccount(ctx context.Context, in *TOTPHasLinkedAccountRequest, opts ...grpc.CallOption) (*TOTPHasLinkedAccountResponse, error) {
-	out := new(TOTPHasLinkedAccountResponse)
+func (c *authClient) TOTPHasLinkedAccount(ctx context.Context, in *TOTPHasLinkedAccReq, opts ...grpc.CallOption) (*TOTPHasLinkedAccResp, error) {
+	out := new(TOTPHasLinkedAccResp)
 	err := c.cc.Invoke(ctx, "/auth.Auth/TOTPHasLinkedAccount", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -296,10 +296,10 @@ type AuthServer interface {
 	AddGroup(context.Context, *AddGroupRequest) (*AddGroupResponse, error)
 	AddCustomerToGroup(context.Context, *AddCustomerToGroupRequest) (*AddCustomerToGroupResponse, error)
 	CheckTOTP(context.Context, *CheckTOTPRequest) (*CheckTOTPResponse, error)
-	TOTPLinkAccountTmp(context.Context, *TOTPLinkAccountTmpRequest) (*TOTPLinkAccountTmpResponse, error)
-	TOTPLinkAccount(context.Context, *TOTPLinkAccountRequest) (*TOTPLinkAccountResponse, error)
-	TOTPUnlinkAccount(context.Context, *TOTPUnlinkAccountRequest) (*TOTPUnlinkAccountResponse, error)
-	TOTPHasLinkedAccount(context.Context, *TOTPHasLinkedAccountRequest) (*TOTPHasLinkedAccountResponse, error)
+	TOTPLinkAccountTmp(context.Context, *TOTPLinkAccTmpReq) (*TOTPLinkAccTmpResp, error)
+	TOTPLinkAccount(context.Context, *TOTPLinkAccReq) (*TOTPLinkAccResp, error)
+	TOTPUnlinkAccount(context.Context, *TOTPUnlinkAccReq) (*TOTPUnlinkAccResp, error)
+	TOTPHasLinkedAccount(context.Context, *TOTPHasLinkedAccReq) (*TOTPHasLinkedAccResp, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -367,16 +367,16 @@ func (UnimplementedAuthServer) AddCustomerToGroup(context.Context, *AddCustomerT
 func (UnimplementedAuthServer) CheckTOTP(context.Context, *CheckTOTPRequest) (*CheckTOTPResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckTOTP not implemented")
 }
-func (UnimplementedAuthServer) TOTPLinkAccountTmp(context.Context, *TOTPLinkAccountTmpRequest) (*TOTPLinkAccountTmpResponse, error) {
+func (UnimplementedAuthServer) TOTPLinkAccountTmp(context.Context, *TOTPLinkAccTmpReq) (*TOTPLinkAccTmpResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TOTPLinkAccountTmp not implemented")
 }
-func (UnimplementedAuthServer) TOTPLinkAccount(context.Context, *TOTPLinkAccountRequest) (*TOTPLinkAccountResponse, error) {
+func (UnimplementedAuthServer) TOTPLinkAccount(context.Context, *TOTPLinkAccReq) (*TOTPLinkAccResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TOTPLinkAccount not implemented")
 }
-func (UnimplementedAuthServer) TOTPUnlinkAccount(context.Context, *TOTPUnlinkAccountRequest) (*TOTPUnlinkAccountResponse, error) {
+func (UnimplementedAuthServer) TOTPUnlinkAccount(context.Context, *TOTPUnlinkAccReq) (*TOTPUnlinkAccResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TOTPUnlinkAccount not implemented")
 }
-func (UnimplementedAuthServer) TOTPHasLinkedAccount(context.Context, *TOTPHasLinkedAccountRequest) (*TOTPHasLinkedAccountResponse, error) {
+func (UnimplementedAuthServer) TOTPHasLinkedAccount(context.Context, *TOTPHasLinkedAccReq) (*TOTPHasLinkedAccResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TOTPHasLinkedAccount not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
@@ -753,7 +753,7 @@ func _Auth_CheckTOTP_Handler(srv interface{}, ctx context.Context, dec func(inte
 }
 
 func _Auth_TOTPLinkAccountTmp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TOTPLinkAccountTmpRequest)
+	in := new(TOTPLinkAccTmpReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -765,13 +765,13 @@ func _Auth_TOTPLinkAccountTmp_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: "/auth.Auth/TOTPLinkAccountTmp",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).TOTPLinkAccountTmp(ctx, req.(*TOTPLinkAccountTmpRequest))
+		return srv.(AuthServer).TOTPLinkAccountTmp(ctx, req.(*TOTPLinkAccTmpReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Auth_TOTPLinkAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TOTPLinkAccountRequest)
+	in := new(TOTPLinkAccReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -783,13 +783,13 @@ func _Auth_TOTPLinkAccount_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: "/auth.Auth/TOTPLinkAccount",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).TOTPLinkAccount(ctx, req.(*TOTPLinkAccountRequest))
+		return srv.(AuthServer).TOTPLinkAccount(ctx, req.(*TOTPLinkAccReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Auth_TOTPUnlinkAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TOTPUnlinkAccountRequest)
+	in := new(TOTPUnlinkAccReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -801,13 +801,13 @@ func _Auth_TOTPUnlinkAccount_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/auth.Auth/TOTPUnlinkAccount",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).TOTPUnlinkAccount(ctx, req.(*TOTPUnlinkAccountRequest))
+		return srv.(AuthServer).TOTPUnlinkAccount(ctx, req.(*TOTPUnlinkAccReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Auth_TOTPHasLinkedAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TOTPHasLinkedAccountRequest)
+	in := new(TOTPHasLinkedAccReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -819,7 +819,7 @@ func _Auth_TOTPHasLinkedAccount_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: "/auth.Auth/TOTPHasLinkedAccount",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).TOTPHasLinkedAccount(ctx, req.(*TOTPHasLinkedAccountRequest))
+		return srv.(AuthServer).TOTPHasLinkedAccount(ctx, req.(*TOTPHasLinkedAccReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
