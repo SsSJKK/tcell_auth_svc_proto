@@ -34,6 +34,35 @@ service Auth {
   rpc TOTPLinkAccount(TOTPLinkAccReq) returns (TOTPLinkAccResp);
   rpc TOTPUnlinkAccount(TOTPUnlinkAccReq) returns (TOTPUnlinkAccResp);
   rpc TOTPHasLinkedAccount(TOTPHasLinkedAccReq) returns (TOTPHasLinkedAccResp);
+
+  rpc GetUserSessions(GetUserSessionsRequest) returns (GetUserSessionsResponse);
+  rpc DeleteUserSession(DeleteUserSessionRequest) returns (DeleteUserSessionResponse);
+}
+
+message GetUserSessionsRequest {
+  string access_token = 1;
+  int32 app_id = 2;
+}
+
+message GetUserSessionsResponse {
+  repeated UserSession user_sessions = 1;
+}
+
+message UserSession { 
+  string session_id = 1;
+  string device_info = 2;
+  string software_info = 3;
+  string created_at = 4;
+}
+
+message DeleteUserSessionRequest {
+  string access_token = 1;
+  int32 app_id = 2;
+  string session_id = 3;
+}
+
+message DeleteUserSessionResponse {
+  bool success = 1;
 }
 
 message TOTPHasLinkedAccReq {
@@ -88,7 +117,7 @@ message CheckTOTPResponse {
 
 message AddCustomerToGroupRequest {
   int32  app_id = 1;
-  int32  customer_id = 2;
+  int64  customer_id = 2;
   int32  group_id = 3;
 }
 
@@ -124,7 +153,7 @@ message GetActionResponse {
 
 message AddPermissionCustomerRequest {
   int32  app_id = 1;
-  int32  customer_id = 2;
+  int64  customer_id = 2;
   int32  action_id = 3;
   string space = 4;
 }
@@ -267,48 +296,48 @@ message SignInResponse {
 }
 
 message Group {
-  uint32 id = 1;
+  int32 id = 1;
   string name = 2;
-  uint32 app_id = 3;
+  int32 app_id = 3;
 }
 
 
 message Customer {
-  uint32 id = 1;
+  int32 id = 1;
   string login = 2;
   string password = 3;
-  uint32 app_id = 4;
+  int32 app_id = 4;
   string phone_number = 5;
   string email = 6;
 }
 
 message Action {
-  uint32 id = 1;
+  int32 id = 1;
   string action = 2;
   string name = 3;
 }
 
 message PermissionsGroup {
-  uint32 id = 1;
-  uint32 app_id = 2;
-  uint32 group_id = 3;
-  uint32 action_id = 4;
+  int32 id = 1;
+  int32 app_id = 2;
+  int32 group_id = 3;
+  int32 action_id = 4;
   Action action = 5;
   string space = 6;
 }
 
 message PermissionsCustomer {
-  uint32 id = 1;
-  uint32 app_id = 2;
-  uint32 customer_id = 3;
-  uint32 action_id = 4;
+  int32 id = 1;
+  int32 app_id = 2;
+  int64 customer_id = 3;
+  int32 action_id = 4;
   Action action = 5;
   string space = 6;
 }
 
 message CustomerInfoResponse {
   Customer customer = 1;
-  repeated uint32 group_ids = 2;
+  repeated int32 group_ids = 2;
   repeated PermissionsCustomer permissions_customers = 3;
   repeated PermissionsGroup permissions_groups = 4;
 }

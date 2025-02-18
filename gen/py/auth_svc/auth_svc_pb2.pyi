@@ -5,6 +5,48 @@ from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Map
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
+class GetUserSessionsRequest(_message.Message):
+    __slots__ = ("access_token", "app_id")
+    ACCESS_TOKEN_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    access_token: str
+    app_id: int
+    def __init__(self, access_token: _Optional[str] = ..., app_id: _Optional[int] = ...) -> None: ...
+
+class GetUserSessionsResponse(_message.Message):
+    __slots__ = ("user_sessions",)
+    USER_SESSIONS_FIELD_NUMBER: _ClassVar[int]
+    user_sessions: _containers.RepeatedCompositeFieldContainer[UserSession]
+    def __init__(self, user_sessions: _Optional[_Iterable[_Union[UserSession, _Mapping]]] = ...) -> None: ...
+
+class UserSession(_message.Message):
+    __slots__ = ("session_id", "device_info", "software_info", "created_at")
+    SESSION_ID_FIELD_NUMBER: _ClassVar[int]
+    DEVICE_INFO_FIELD_NUMBER: _ClassVar[int]
+    SOFTWARE_INFO_FIELD_NUMBER: _ClassVar[int]
+    CREATED_AT_FIELD_NUMBER: _ClassVar[int]
+    session_id: str
+    device_info: str
+    software_info: str
+    created_at: str
+    def __init__(self, session_id: _Optional[str] = ..., device_info: _Optional[str] = ..., software_info: _Optional[str] = ..., created_at: _Optional[str] = ...) -> None: ...
+
+class DeleteUserSessionRequest(_message.Message):
+    __slots__ = ("access_token", "app_id", "session_id")
+    ACCESS_TOKEN_FIELD_NUMBER: _ClassVar[int]
+    APP_ID_FIELD_NUMBER: _ClassVar[int]
+    SESSION_ID_FIELD_NUMBER: _ClassVar[int]
+    access_token: str
+    app_id: int
+    session_id: str
+    def __init__(self, access_token: _Optional[str] = ..., app_id: _Optional[int] = ..., session_id: _Optional[str] = ...) -> None: ...
+
+class DeleteUserSessionResponse(_message.Message):
+    __slots__ = ("success",)
+    SUCCESS_FIELD_NUMBER: _ClassVar[int]
+    success: bool
+    def __init__(self, success: bool = ...) -> None: ...
+
 class TOTPHasLinkedAccReq(_message.Message):
     __slots__ = ("access_token", "app_id")
     ACCESS_TOKEN_FIELD_NUMBER: _ClassVar[int]
