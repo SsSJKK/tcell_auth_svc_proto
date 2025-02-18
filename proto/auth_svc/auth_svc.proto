@@ -52,7 +52,7 @@ message UserSession {
   string session_id = 1;
   string device_info = 2;
   string software_info = 3;
-  string created_at = 4;
+  int64 created_at = 4;
 }
 
 message DeleteUserSessionRequest {

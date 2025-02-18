@@ -28,8 +28,8 @@ class UserSession(_message.Message):
     session_id: str
     device_info: str
     software_info: str
-    created_at: str
-    def __init__(self, session_id: _Optional[str] = ..., device_info: _Optional[str] = ..., software_info: _Optional[str] = ..., created_at: _Optional[str] = ...) -> None: ...
+    created_at: int
+    def __init__(self, session_id: _Optional[str] = ..., device_info: _Optional[str] = ..., software_info: _Optional[str] = ..., created_at: _Optional[int] = ...) -> None: ...
 
 class DeleteUserSessionRequest(_message.Message):
     __slots__ = ("access_token", "app_id", "session_id")
