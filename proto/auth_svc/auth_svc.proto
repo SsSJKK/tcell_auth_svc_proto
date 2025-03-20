@@ -34,9 +34,30 @@ service Auth {
   rpc TOTPLinkAccount(TOTPLinkAccReq) returns (TOTPLinkAccResp);
   rpc TOTPUnlinkAccount(TOTPUnlinkAccReq) returns (TOTPUnlinkAccResp);
   rpc TOTPHasLinkedAccount(TOTPHasLinkedAccReq) returns (TOTPHasLinkedAccResp);
+  rpc TOTPLinkAccountAdmin(TOTPLinkAccAdminReq) returns (TOTPLinkAccAdminResp);
+  rpc TOTPGetSecretAdmin(TOTPGetSecretAdminReq) returns (TOTPGetSecretAdminResp);
 
   rpc GetUserSessions(GetUserSessionsRequest) returns (GetUserSessionsResponse);
   rpc DeleteUserSession(DeleteUserSessionRequest) returns (DeleteUserSessionResponse);
+}
+
+message TOTPGetSecretAdminReq {
+  int32 app_id = 1;
+  string login = 2;
+}
+
+message TOTPGetSecretAdminResp {
+  string secret = 1; 
+}
+
+message TOTPLinkAccAdminReq { 
+  int32 app_id = 1;
+  string login = 2;
+}
+
+message TOTPLinkAccAdminResp {
+  string secret = 1;
+  string qr_code = 2;
 }
 
 message GetUserSessionsRequest {

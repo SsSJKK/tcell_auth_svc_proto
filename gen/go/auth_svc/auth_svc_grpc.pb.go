@@ -43,6 +43,8 @@ const (
 	Auth_TOTPLinkAccount_FullMethodName       = "/auth.Auth/TOTPLinkAccount"
 	Auth_TOTPUnlinkAccount_FullMethodName     = "/auth.Auth/TOTPUnlinkAccount"
 	Auth_TOTPHasLinkedAccount_FullMethodName  = "/auth.Auth/TOTPHasLinkedAccount"
+	Auth_TOTPLinkAccountAdmin_FullMethodName  = "/auth.Auth/TOTPLinkAccountAdmin"
+	Auth_TOTPGetSecretAdmin_FullMethodName    = "/auth.Auth/TOTPGetSecretAdmin"
 	Auth_GetUserSessions_FullMethodName       = "/auth.Auth/GetUserSessions"
 	Auth_DeleteUserSession_FullMethodName     = "/auth.Auth/DeleteUserSession"
 )
@@ -75,6 +77,8 @@ type AuthClient interface {
 	TOTPLinkAccount(ctx context.Context, in *TOTPLinkAccReq, opts ...grpc.CallOption) (*TOTPLinkAccResp, error)
 	TOTPUnlinkAccount(ctx context.Context, in *TOTPUnlinkAccReq, opts ...grpc.CallOption) (*TOTPUnlinkAccResp, error)
 	TOTPHasLinkedAccount(ctx context.Context, in *TOTPHasLinkedAccReq, opts ...grpc.CallOption) (*TOTPHasLinkedAccResp, error)
+	TOTPLinkAccountAdmin(ctx context.Context, in *TOTPLinkAccAdminReq, opts ...grpc.CallOption) (*TOTPLinkAccAdminResp, error)
+	TOTPGetSecretAdmin(ctx context.Context, in *TOTPGetSecretAdminReq, opts ...grpc.CallOption) (*TOTPGetSecretAdminResp, error)
 	GetUserSessions(ctx context.Context, in *GetUserSessionsRequest, opts ...grpc.CallOption) (*GetUserSessionsResponse, error)
 	DeleteUserSession(ctx context.Context, in *DeleteUserSessionRequest, opts ...grpc.CallOption) (*DeleteUserSessionResponse, error)
 }
@@ -327,6 +331,26 @@ func (c *authClient) TOTPHasLinkedAccount(ctx context.Context, in *TOTPHasLinked
 	return out, nil
 }
 
+func (c *authClient) TOTPLinkAccountAdmin(ctx context.Context, in *TOTPLinkAccAdminReq, opts ...grpc.CallOption) (*TOTPLinkAccAdminResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TOTPLinkAccAdminResp)
+	err := c.cc.Invoke(ctx, Auth_TOTPLinkAccountAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) TOTPGetSecretAdmin(ctx context.Context, in *TOTPGetSecretAdminReq, opts ...grpc.CallOption) (*TOTPGetSecretAdminResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TOTPGetSecretAdminResp)
+	err := c.cc.Invoke(ctx, Auth_TOTPGetSecretAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authClient) GetUserSessions(ctx context.Context, in *GetUserSessionsRequest, opts ...grpc.CallOption) (*GetUserSessionsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUserSessionsResponse)
@@ -375,6 +399,8 @@ type AuthServer interface {
 	TOTPLinkAccount(context.Context, *TOTPLinkAccReq) (*TOTPLinkAccResp, error)
 	TOTPUnlinkAccount(context.Context, *TOTPUnlinkAccReq) (*TOTPUnlinkAccResp, error)
 	TOTPHasLinkedAccount(context.Context, *TOTPHasLinkedAccReq) (*TOTPHasLinkedAccResp, error)
+	TOTPLinkAccountAdmin(context.Context, *TOTPLinkAccAdminReq) (*TOTPLinkAccAdminResp, error)
+	TOTPGetSecretAdmin(context.Context, *TOTPGetSecretAdminReq) (*TOTPGetSecretAdminResp, error)
 	GetUserSessions(context.Context, *GetUserSessionsRequest) (*GetUserSessionsResponse, error)
 	DeleteUserSession(context.Context, *DeleteUserSessionRequest) (*DeleteUserSessionResponse, error)
 	mustEmbedUnimplementedAuthServer()
@@ -458,6 +484,12 @@ func (UnimplementedAuthServer) TOTPUnlinkAccount(context.Context, *TOTPUnlinkAcc
 }
 func (UnimplementedAuthServer) TOTPHasLinkedAccount(context.Context, *TOTPHasLinkedAccReq) (*TOTPHasLinkedAccResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TOTPHasLinkedAccount not implemented")
+}
+func (UnimplementedAuthServer) TOTPLinkAccountAdmin(context.Context, *TOTPLinkAccAdminReq) (*TOTPLinkAccAdminResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TOTPLinkAccountAdmin not implemented")
+}
+func (UnimplementedAuthServer) TOTPGetSecretAdmin(context.Context, *TOTPGetSecretAdminReq) (*TOTPGetSecretAdminResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TOTPGetSecretAdmin not implemented")
 }
 func (UnimplementedAuthServer) GetUserSessions(context.Context, *GetUserSessionsRequest) (*GetUserSessionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserSessions not implemented")
@@ -918,6 +950,42 @@ func _Auth_TOTPHasLinkedAccount_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_TOTPLinkAccountAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TOTPLinkAccAdminReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).TOTPLinkAccountAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_TOTPLinkAccountAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).TOTPLinkAccountAdmin(ctx, req.(*TOTPLinkAccAdminReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_TOTPGetSecretAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TOTPGetSecretAdminReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).TOTPGetSecretAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_TOTPGetSecretAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).TOTPGetSecretAdmin(ctx, req.(*TOTPGetSecretAdminReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Auth_GetUserSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUserSessionsRequest)
 	if err := dec(in); err != nil {
@@ -1056,6 +1124,14 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TOTPHasLinkedAccount",
 			Handler:    _Auth_TOTPHasLinkedAccount_Handler,
+		},
+		{
+			MethodName: "TOTPLinkAccountAdmin",
+			Handler:    _Auth_TOTPLinkAccountAdmin_Handler,
+		},
+		{
+			MethodName: "TOTPGetSecretAdmin",
+			Handler:    _Auth_TOTPGetSecretAdmin_Handler,
 		},
 		{
 			MethodName: "GetUserSessions",
